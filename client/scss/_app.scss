@@ -1,0 +1,69 @@
+$primaryColor: rgb(86, 97, 130);
+$lightPrimaryColor: lighten($primaryColor, 30%);
+$primaryBlack: rgb(0, 0, 0);
+$secondaryBlack: dimgray;
+$lightGrey: lightgray;
+$superLightGrey: whitesmoke;
+$cool: rgb(183, 211, 233);
+
+body {
+  text-align: center;
+  background-color: $lightPrimaryColor;
+  // color: $primaryBlack
+}
+
+.splitForm {
+  border: 1px solid $primaryBlack;
+  background-color: $primaryColor;
+  color: $superLightGrey;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  text-align: left;
+}
+
+.form-group {
+  margin-top: 20px;
+}
+
+// li {
+//   margin-bottom: 10px;
+// }
+
+label {
+  font-weight: bold;
+}
+
+input {
+  margin-left: 10px;
+  // border: 1px solid blue;
+}
+
+button {
+  width: 200px;
+  margin-bottom: 10px;
+  background-color: white;
+  color: $primaryBlack;
+  border: 1px solid $lightGrey;
+}
+
+.submit {
+  margin: auto
+}
+
+.removeEntry {
+  width: 100px;
+  margin-left: 10px;
+}
+
+select {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  width: 150px;
+  background-color: white;
+  color: $primaryBlack;
+  border: 1px solid $lightGrey;
+}
