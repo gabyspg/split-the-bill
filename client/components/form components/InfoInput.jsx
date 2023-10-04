@@ -24,9 +24,10 @@ const InfoInput = (props) => {
         />
       </label>
       <label className="form-group">
-        Date (MM/DD/YYY):
+        Date (mm/dd/yyyy):
         <input
           name="date"
+          type="date"
           placeholder="Date"
           value={billInfoFields.date}
           onChange={(event) => handleInfoChange(event)}

@@ -16,38 +16,38 @@ mongoose
 
 const Schema = mongoose.Schema;
 
-// sets a schema for the 'species' collection
-const billSchema = new Schema({
-  billName: String,
-  place: String,
-  date: String,
-  people: [
-    {
-      person: String,
-      foodItems: [
-        {
-          item: String,
-          price: Number,
-          quantity: Number,
-        },
-      ],
-    },
-  ],
-  foodItems: [
-    {
-      item: String,
-      quantity: Number,
-      price: Number,
-    },
-  ],
-  tax: Number,
-  tip: Number,
+const itemSchema = new Schema({
+  itemName: String,
+  price: Number,
+  quantity: Number,
 });
 
-// creats a model for the 'species' collection that will be part of the export
+const personSchema = new Schema({
+  items: [itemSchema],
+  subtotal: Number,
+  tax: Number,
+  tip: Number,
+  total: Number,
+});
+
+const billSchema = new Schema({
+  billName: String,
+  restaurant: String,
+  date: String,
+  subtotal: Number,
+  tax: Number,
+  taxPercentage: Number,
+  tip: Number,
+  tipPercentage: Number,
+  total: Number,
+  people: {
+    type: Map,
+    of: personSchema,
+  },
+});
+
+// creats a model for the 'bill' collection that will be part of the export
 const Bill = mongoose.model('bills', billSchema);
 
 // exports all the models in an object to be used in the controller
-module.exports = {
-  Bill,
-};
+module.exports = Bill;

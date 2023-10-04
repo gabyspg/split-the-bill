@@ -11,7 +11,7 @@ import {
   Link,
   useNavigate,
 } from 'react-router-dom';
-import { updateBill } from '../slices/billSlice.js';
+import { updateBill } from '../../slices/billSlice.js';
 
 const CreateBill = () => {
   const dispatch = useDispatch();
@@ -29,23 +29,6 @@ const CreateBill = () => {
     tax: '',
     tip: '',
   });
-
-  // useEffect(() => {}, [totals]);
-
-  // const calculateTotals = () => {
-  //   try {
-  //     const subtotal = 0;
-  //     for (let item in foodInputFields) {
-  //       subtotal += Number(item.quantity) * Number(item.price);
-  //     }
-  //     const total = subtotal;
-  //     // const total =
-  //     //   subtotal + Number(billInfoFields.tax) + Number(billInfoFields.tip);
-  //     setTotals([subtotal, total]);
-  //   } catch {
-  //     return;
-  //   }
-  // };
 
   const handleInfoChange = (event) => {
     let data = JSON.parse(JSON.stringify(billInfo));
@@ -88,9 +71,39 @@ const CreateBill = () => {
     setFoodItems(data);
   };
 
-  const submit = () => {
-    dispatch(updateBill({ billInfo, people, foodItems }));
-    navigate('/summary');
+  const checkFields = () => {
+    if (people.length === 0 || foodItems.length === 0) {
+      return false;
+    }
+    for (let i = 0; i < people.length; i++) {
+      if (people[i].name === '') {
+        return false;
+      }
+    }
+    for (let i = 0; i < foodItems.length; i++) {
+      for (let key in foodItems[i]) {
+        if (foodItems[i][key] === '') {
+          return false;
+        }
+      }
+    }
+    for (let key in billInfo) {
+      if (billInfo[key] === '') {
+        return false;
+      }
+    }
+    return true;
+  };
+
+  const submit = (event) => {
+    event.preventDefault();
+    const ready = checkFields();
+    if (ready === true) {
+      dispatch(updateBill({ billInfo, people, foodItems }));
+      navigate('/summary');
+    } else {
+      alert('Please fill out the form completely');
+    }
   };
 
   return (
@@ -119,6 +132,7 @@ const CreateBill = () => {
           Tax ($):
           <input
             name="tax"
+            type="number"
             placeholder="Tax"
             value={billInfo.tax}
             onChange={(event) => handleInfoChange(event)}
@@ -128,13 +142,14 @@ const CreateBill = () => {
           Tip ($):
           <input
             name="tip"
+            type="number"
             placeholder="Tip"
             value={billInfo.tip}
             onChange={(event) => handleInfoChange(event)}
           />
         </label>
         {/* <label className="form-group">Total ($): {totals[1]}</label> */}
-        <button className="submit" onClick={submit}>
+        <button className="submit" onClick={(event) => submit(event)}>
           Split the Bill
         </button>
       </div>

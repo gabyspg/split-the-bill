@@ -27,6 +27,13 @@ body {
   .form-group {
     margin-top: 20px;
   }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
   input {
     margin-left: 10px;
     background-color: #efeeed;

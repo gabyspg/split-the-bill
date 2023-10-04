@@ -24,12 +24,14 @@ const AddItem = (props) => {
               />
               <input
                 name="price"
+                type="number"
                 placeholder="Price"
                 value={foodItem.price}
                 onChange={(event) => handleFoodChange(index, event)}
               />
               <input
                 name="quantity"
+                type="number"
                 placeholder="Quantity"
                 value={foodItem.quantity}
                 onChange={(event) => handleFoodChange(index, event)}
