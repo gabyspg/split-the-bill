@@ -3,11 +3,25 @@ import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import calculateSummary from '../utils/calculateSummary';
 import PersonReceipt from './summary components/PersonReceipt.jsx';
+import fetch from 'isomorphic-fetch';
 
 const BillSummary = () => {
   const currentBill = useSelector((state) => state.bill);
   const summary = calculateSummary(currentBill);
   console.log(summary);
+
+  const saveSummaryRequest = {
+    method: 'POST',
+    credentials: 'same-origin',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(summary),
+  };
+
+  fetch('/api/saveSummary', saveSummaryRequest)
+    .then((res) => res.json())
+    .then((data) => console.log(data))
+    .catch((err) => console.log(err));
+
   const peopleReceipts = [];
   let count = 0;
   for (let person in summary.people) {

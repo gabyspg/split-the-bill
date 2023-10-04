@@ -23,6 +23,7 @@ body {
   flex-direction: column;
   margin: auto;
   text-align: left;
+  border-radius: 10px;
 
   .form-group {
     margin-top: 20px;
@@ -91,6 +92,7 @@ body {
   border: 1px solid #ccc;
   background-color: #d2d8e9;
   padding: 20px;
+  // border-radius: 5px;
 
   .receipt-header {
     text-align: center;

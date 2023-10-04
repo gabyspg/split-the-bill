@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form } from 'react-router-dom';
-import AddPeople from './AddPeople.jsx';
-import AddItem from './AddItem.jsx';
-import InfoInput from './InfoInput.jsx';
+import AddPeople from './form components/AddPeople.jsx';
+import AddItem from './form components/AddItem.jsx';
+import InfoInput from './form components/InfoInput.jsx';
 import {
   BrowserRouter,
   Route,
@@ -11,7 +11,7 @@ import {
   Link,
   useNavigate,
 } from 'react-router-dom';
-import { updateBill } from '../../slices/billSlice.js';
+import { updateBill } from '../slices/billSlice.js';
 
 const CreateBill = () => {
   const dispatch = useDispatch();

@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 
 import App from './components/App.jsx';
-import CreateBill from './components/form components/CreateBill.jsx';
+import CreateBill from './components/CreateBill.jsx';
 import BillSummary from './components/BillSummary.jsx';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';

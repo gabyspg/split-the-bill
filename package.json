@@ -13,6 +13,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.6",
     "browserify": "^17.0.0",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "mongoose": "^7.5.3",
     "node-fetch": "^3.3.2",
@@ -32,6 +33,7 @@
     "css": "^3.0.0",
     "css-loader": "^6.8.1",
     "html-webpack-plugin": "^5.5.3",
+    "isomorphic-fetch": "^3.0.0",
     "nodemon": "^3.0.1",
     "sass": "^1.68.0",
     "sass-loader": "^13.3.2",
