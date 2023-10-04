@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import calculateSummary from '../utils/calculateSummary';
@@ -10,17 +10,22 @@ const BillSummary = () => {
   const summary = calculateSummary(currentBill);
   console.log(summary);
 
-  const saveSummaryRequest = {
-    method: 'POST',
-    credentials: 'same-origin',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(summary),
-  };
+  const saveSummary = (event) => {
+    event.preventDefault();
 
-  fetch('/api/saveSummary', saveSummaryRequest)
-    .then((res) => res.json())
-    .then((data) => console.log(data))
-    .catch((err) => console.log(err));
+    const saveSummaryRequest = {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(summary),
+    };
+
+    console.log('before fetch');
+    fetch('/api/saveSummary', saveSummaryRequest)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  };
 
   const peopleReceipts = [];
   let count = 0;
@@ -46,7 +51,10 @@ const BillSummary = () => {
 
   return (
     <>
-      <h2>Bill Summary</h2>
+      <h2>Receipt Summary</h2>
+      <button className="submit" onClick={(event) => saveSummary(event)}>
+        Save this Split!
+      </button>
       <div className="divideReceipts">
         <div className="overallReceipt">
           <PersonReceipt
