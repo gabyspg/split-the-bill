@@ -13,76 +13,123 @@ body {
 }
 
 .splitForm {
-  border: 1px solid $primaryBlack;
-  background-color: $primaryColor;
-  color: $superLightGrey;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ccc;
+  background-color: #cdd2e1;
+  color: #262c3d;
+  box-shadow: 2px 2px 2px 1px rgba(106, 106, 108, 0.1);
   max-width: 1000px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   margin: auto;
   text-align: left;
+
+  .form-group {
+    margin-top: 20px;
+  }
+  input {
+    margin-left: 10px;
+    background-color: #efeeed;
+    border: 1px solid rgb(160, 160, 181);
+  }
+  .submit {
+    margin: auto;
+    background-color: #293b80;
+    color: #dadde5;
+  }
+  .removeEntry {
+    width: 100px;
+    margin-left: 10px;
+    background-color: #efeeed;
+  }
+
+  select {
+    margin-left: 10px;
+    margin-bottom: 10px;
+    width: 150px;
+    background-color: #efeeed;
+    color: $primaryBlack;
+    border: 1px solid $lightGrey;
+  }
+}
+
+.overallReceipt {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  .receipt {
+    // background-color: #d2d8e9;
+    background-color: $lightGrey;
+    border: 1px solid #909090;
+  }
+}
+
+.divideReceipts {
+  display: flex;
 }
 
 .allReceipts {
   display: flex;
-  flex-direction: row;
-  justify-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
 }
 
 .receipt {
-  border: 1px solid $primaryBlack;
-  background-color: $primaryColor;
-  color: $superLightGrey;
-  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
-  min-width: 350px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  margin: auto;
-  text-align: left;
-}
+  width: 300px;
+  margin: 20px;
+  border: 1px solid #ccc;
+  background-color: #d2d8e9;
+  padding: 20px;
 
-.form-group {
-  margin-top: 20px;
-}
+  .receipt-header {
+    text-align: center;
+    margin-bottom: 20px;
+    h3 {
+      margin: 0px;
+    }
+  }
 
-// li {
-//   margin-bottom: 10px;
-// }
+  .item-row,
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+
+  .item-name,
+  .summary-name {
+    flex: 1;
+    text-align: left;
+  }
+
+  .item-quantity {
+    flex-basis: 10%;
+    text-align: left;
+  }
+  .item-price,
+  .summary-price {
+    flex-basis: 40%;
+    text-align: right;
+  }
+  .line {
+    border: none;
+    border-top: 1px solid $primaryColor;
+    margin: 10px 0;
+  }
+}
 
 label {
   font-weight: bold;
 }
 
-input {
-  margin-left: 10px;
-  // border: 1px solid blue;
-}
-
 button {
   width: 200px;
   margin-bottom: 10px;
-  background-color: white;
-  color: $primaryBlack;
-  border: 1px solid $lightGrey;
-}
-
-.submit {
-  margin: auto
-}
-
-.removeEntry {
-  width: 100px;
-  margin-left: 10px;
-}
-
-select {
-  margin-left: 10px;
-  margin-bottom: 10px;
-  width: 150px;
-  background-color: white;
+  background-color: #efeeed;
   color: $primaryBlack;
   border: 1px solid $lightGrey;
 }

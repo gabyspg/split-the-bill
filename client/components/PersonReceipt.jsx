@@ -1,27 +1,46 @@
 import React from 'react';
+import SummaryRow from './SummaryRow.jsx';
+import ItemsRow from './ItemsRow.jsx';
 
 const PersonReceipt = (props) => {
   const { person, personSummary } = props;
 
+  const { tip, tax, subtotal, total, items } = personSummary;
+
   const itemsList = [];
-  for (let i = 0; i < personSummary.items.length; i++) {
-    const item = personSummary.items[i];
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
     itemsList.push(
-      <li>
-        {item.quantity} {item.itemName} ${item.price}
-      </li>
+      <ItemsRow
+        quantity={item.quantity}
+        name={item.itemName}
+        price={item.price}
+      />
     );
   }
 
   return (
     <div className="receipt">
-      <h3>{person}</h3>
-      <label>Food Items:</label>
-      {itemsList}
-      <label>Subtotal: ${personSummary.subtotal.toFixed(2)}</label>
-      <label>Tax: ${personSummary.tax.toFixed(2)}</label>
-      <label>Tip: ${personSummary.tip.toFixed(2)}</label>
-      <label>Total: ${personSummary.total.toFixed(2)}</label>
+      <div className="receipt-header">
+        <h3>Receipt: {person}</h3>
+      </div>
+      <div className="receipt-items">
+        <div className="item-row">
+          <span class="item-quantity">#</span>
+          <span className="item-name">Items</span>
+          <span className="item-price">Price</span>
+        </div>
+        <hr className="line"></hr>
+        {itemsList}
+      </div>
+      <hr className="line"></hr>
+      <div className="receipt-summary">
+        <SummaryRow name={'Subtotal'} price={subtotal} />
+        <SummaryRow name={'Tax'} price={tax} />
+        <SummaryRow name={'Tip'} price={tip} />
+        <hr className="line"></hr>
+        <SummaryRow name={'Total'} price={total} />
+      </div>
     </div>
   );
 };

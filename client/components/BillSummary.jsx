@@ -21,10 +21,28 @@ const BillSummary = () => {
     );
   }
 
+  const overallSummary = {
+    tax: Number(summary.tax),
+    tip: Number(summary.tip),
+    subtotal: Number(summary.subtotal),
+    total: Number(summary.total),
+    items: currentBill.foodItems,
+  };
+  console.log('overallSummary', overallSummary);
+
   return (
     <>
       <h2>Bill Summary</h2>
-      <div className="allReceipts">{peopleReceipts}</div>
+      <div className = 'divideReceipts'>
+        <div className="overallReceipt">
+          <PersonReceipt
+            person={'Overall'}
+            personSummary={overallSummary}
+            key={`overallReceipt`}
+          />
+        </div>
+        <div className="allReceipts">{peopleReceipts}</div>
+      </div>
     </>
   );
 };
