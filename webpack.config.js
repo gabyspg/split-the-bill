@@ -31,6 +31,7 @@ module.exports = {
     },
     historyApiFallback: true,
   },
+  devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin({
       template: '/home/gabyspg/split-the-bill/index.html',

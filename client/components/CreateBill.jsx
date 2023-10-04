@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Form } from 'react-router-dom';
 import AddPeople from './AddPeople.jsx';
 import AddItem from './AddItem.jsx';
 import InfoInput from './InfoInput.jsx';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  Link,
+  useNavigate,
+} from 'react-router-dom';
+import { updateBill } from '../slices/billSlice.js';
 
 const CreateBill = () => {
-  const [peopleInputFields, setPeopleInputFields] = useState([{ name: '' }]);
-  const [foodInputFields, setFoodInputFields] = useState([
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // const [totals, setTotals] = useState([0, 0]);
+  const [people, setPeople] = useState([{ name: '' }]);
+  const [foodItems, setFoodItems] = useState([
     { itemName: '', price: '', quantity: '', people: '' },
   ]);
-
-  const [billInfoFields, setBillInfoFields] = useState({
+  const [billInfo, setBillInfo] = useState({
     billName: '',
     restaurant: '',
     date: '',
@@ -19,52 +30,67 @@ const CreateBill = () => {
     tip: '',
   });
 
+  // useEffect(() => {}, [totals]);
+
+  // const calculateTotals = () => {
+  //   try {
+  //     const subtotal = 0;
+  //     for (let item in foodInputFields) {
+  //       subtotal += Number(item.quantity) * Number(item.price);
+  //     }
+  //     const total = subtotal;
+  //     // const total =
+  //     //   subtotal + Number(billInfoFields.tax) + Number(billInfoFields.tip);
+  //     setTotals([subtotal, total]);
+  //   } catch {
+  //     return;
+  //   }
+  // };
+
   const handleInfoChange = (event) => {
-    let data = JSON.parse(JSON.stringify(billInfoFields));
+    let data = JSON.parse(JSON.stringify(billInfo));
     data[event.target.name] = event.target.value;
-    setBillInfoFields(data);
+    setBillInfo(data);
   };
 
   const handlePersonChange = (index, event) => {
-    let data = JSON.parse(JSON.stringify(peopleInputFields));
+    let data = JSON.parse(JSON.stringify(people));
     data[index][event.target.name] = event.target.value;
-    setPeopleInputFields(data);
+    setPeople(data);
   };
 
-  const handleFoodChange = (index, event) => {
-    let data = JSON.parse(JSON.stringify(foodInputFields));
+  const handleItemChange = (index, event) => {
+    let data = JSON.parse(JSON.stringify(foodItems));
     data[index][event.target.name] = event.target.value;
-    setFoodInputFields(data);
+    setFoodItems(data);
+    // calculateTotals();
   };
 
   const addPerson = () => {
     let newPerson = { name: '' };
-    setPeopleInputFields([...peopleInputFields, newPerson]);
+    setPeople([...people, newPerson]);
   };
 
   const removePerson = (index) => {
-    let data = JSON.parse(JSON.stringify(peopleInputFields));
+    let data = JSON.parse(JSON.stringify(people));
     data.splice(index, 1);
-    setPeopleInputFields(data);
+    setPeople(data);
   };
 
-  const addFoodItem = () => {
+  const addItem = () => {
     let newItem = { itemName: '', price: '', quantity: '', people: '' };
-    setFoodInputFields([...foodInputFields, newItem]);
+    setFoodItems([...foodItems, newItem]);
   };
 
-  const removeFoodItem = (index) => {
-    let data = JSON.parse(JSON.stringify(foodInputFields));
+  const removeItem = (index) => {
+    let data = JSON.parse(JSON.stringify(foodItems));
     data.splice(index, 1);
-    setFoodInputFields(data);
+    setFoodItems(data);
   };
 
-  const submit = (e) => {
-    e.preventDefault();
-    // return <div>Hello</div>;
-    console.log('peopleInputFields', peopleInputFields);
-    console.log('foodInputFields', foodInputFields);
-    console.log('billInfoFields', billInfoFields);
+  const submit = () => {
+    dispatch(updateBill({ billInfo, people, foodItems }));
+    navigate('/summary');
   };
 
   return (
@@ -73,27 +99,28 @@ const CreateBill = () => {
       <div className="splitForm">
         <InfoInput
           handleInfoChange={handleInfoChange}
-          billInfoFields={billInfoFields}
+          billInfoFields={billInfo}
         />
         <AddPeople
-          peopleInputFields={peopleInputFields}
+          peopleInputFields={people}
           handlePersonChange={handlePersonChange}
           removePerson={removePerson}
         />
         <button onClick={addPerson}>Add person</button>
         <AddItem
-          peopleInputFields={peopleInputFields}
-          handleFoodChange={handleFoodChange}
-          foodInputFields={foodInputFields}
-          removeFoodItem={removeFoodItem}
+          peopleInputFields={people}
+          handleFoodChange={handleItemChange}
+          foodInputFields={foodItems}
+          removeFoodItem={removeItem}
         />
-        <button onClick={addFoodItem}>Add item</button>
+        <button onClick={addItem}>Add item</button>
+        {/* <label className="form-group">Subtotal ($): {totals[0]}</label> */}
         <label className="form-group">
           Tax ($):
           <input
             name="tax"
             placeholder="Tax"
-            value={billInfoFields.tax}
+            value={billInfo.tax}
             onChange={(event) => handleInfoChange(event)}
           />
         </label>
@@ -102,10 +129,11 @@ const CreateBill = () => {
           <input
             name="tip"
             placeholder="Tip"
-            value={billInfoFields.tip}
+            value={billInfo.tip}
             onChange={(event) => handleInfoChange(event)}
           />
         </label>
+        {/* <label className="form-group">Total ($): {totals[1]}</label> */}
         <button className="submit" onClick={submit}>
           Split the Bill
         </button>

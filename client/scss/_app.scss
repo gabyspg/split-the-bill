@@ -25,6 +25,25 @@ body {
   text-align: left;
 }
 
+.allReceipts {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+}
+
+.receipt {
+  border: 1px solid $primaryBlack;
+  background-color: $primaryColor;
+  color: $superLightGrey;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+  min-width: 350px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  text-align: left;
+}
+
 .form-group {
   margin-top: 20px;
 }
