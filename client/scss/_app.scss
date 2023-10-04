@@ -34,17 +34,13 @@ body {
     -webkit-appearance: none;
     margin: 0;
   }
-  
+
   input {
     margin-left: 10px;
     background-color: #efeeed;
     border: 1px solid rgb(160, 160, 181);
   }
-  .submit {
-    margin: auto;
-    background-color: #293b80;
-    color: #dadde5;
-  }
+
   .removeEntry {
     width: 100px;
     margin-left: 10px;
@@ -89,8 +85,8 @@ body {
 .receipt {
   width: 300px;
   margin: 20px;
-  border: 1px solid #ccc;
-  background-color: #d2d8e9;
+  border: 1px solid #d2d8f6;
+  background-color: #cfd8f3;
   padding: 20px;
   // border-radius: 5px;
 
@@ -131,6 +127,25 @@ body {
   }
 }
 
+.intro {
+  border: 1px solid #ccc;
+  background-color: #cdd2e1;
+  color: #262c3d;
+  box-shadow: 2px 2px 2px 1px rgba(106, 106, 108, 0.1);
+  max-width: 800px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  text-align: center;
+  border-radius: 10px;
+  p {
+    font-size: large;
+  }
+}
+
+
+
 label {
   font-weight: bold;
 }
@@ -141,4 +156,13 @@ button {
   background-color: #efeeed;
   color: $primaryBlack;
   border: 1px solid $lightGrey;
+  border-radius: 3px;
+}
+
+.submit {
+  margin: auto;
+  background-color: #293b80;
+  color: #dadde5;
+  height: 30px;
+  border-radius: 10px;
 }

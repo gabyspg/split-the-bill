@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Form } from 'react-router-dom';
 import AddPeople from './form components/AddPeople.jsx';
 import AddItem from './form components/AddItem.jsx';
 import InfoInput from './form components/InfoInput.jsx';

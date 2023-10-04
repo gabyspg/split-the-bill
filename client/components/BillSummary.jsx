@@ -52,9 +52,15 @@ const BillSummary = () => {
   return (
     <>
       <h2>Receipt Summary</h2>
-      <button className="submit" onClick={(event) => saveSummary(event)}>
-        Save this Split!
-      </button>
+      <div className="intro">
+        <p>
+          Click the button below to save this split! Make sure to save if you
+          want to access your receipt in the future.
+        </p>
+        <button className="submit" onClick={(event) => saveSummary(event)}>
+          Save this Split!
+        </button>
+      </div>
       <div className="divideReceipts">
         <div className="overallReceipt">
           <PersonReceipt
