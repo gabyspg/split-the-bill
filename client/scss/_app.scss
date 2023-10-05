@@ -14,9 +14,12 @@ $cool: rgb(183, 211, 233);
 body {
   font-family: 'Roboto', sans-serif;
   text-align: center;
-  background-color: $background;
+  background-color: #efeff5;
+  // background-color: $background;
+  // background-image: radial-gradient(white, #cad4e1);
   h2 {
-    color: $superLightGrey;
+    // color: $superLightGrey;
+    color: $primaryBlack;
   }
 }
 

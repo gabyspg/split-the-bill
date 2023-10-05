@@ -16,10 +16,11 @@ const App = () => {
       <h2>Home</h2>
       <div className="intro">
         <p>
-          Welcome to Split the Bill App! Do you have a receipt that you need to
-          split amongst your family and friends? Split the bill app will make
-          this process seemless! Please select from the following options:
+          Welcome to Split the Bill! Do you have a receipt that you'd like to
+          effortlessly divide among your family and friends? With Split the
+          Bill, the process becomes seamless.
         </p>
+        <p>Please choose from the following options:</p>
         <button className="submit" onClick={() => navigate('/newSplit')}>
           Split new Bill
         </button>
