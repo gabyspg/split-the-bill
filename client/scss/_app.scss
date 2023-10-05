@@ -6,8 +6,13 @@ $lightGrey: lightgray;
 $superLightGrey: whitesmoke;
 $cool: rgb(183, 211, 233);
 
+//background-color: #8BC6EC;
+//background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+
 body {
   text-align: center;
+  // background-color: #8bc6ec;
+  // background-image: linear-gradient(360deg, #bcd0e6 0%, #8da7e0 100%);
   // background: linear-gradient(to bottom, #b6c3ec, #82a2ec);
   background-color: $lightPrimaryColor;
   //   color: $lightgray;
@@ -16,6 +21,7 @@ body {
 .splitForm {
   border: 1px solid #ccc;
   background-color: #cdd2e1;
+  // background-color: #bdc4d7;
   color: #262c3d;
   box-shadow: 2px 2px 2px 1px rgba(106, 106, 108, 0.1);
   max-width: 1000px;
@@ -60,8 +66,9 @@ body {
 
 .overallReceipt {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
   padding: 20px;
   .receipt {
     // background-color: #d2d8e9;

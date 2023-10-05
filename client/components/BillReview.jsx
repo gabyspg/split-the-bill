@@ -47,6 +47,13 @@ const BillReview = () => {
     navigate('/updateBill');
   };
 
+  const deleteReceipt = (event) => {
+    event.preventDefault();
+    const bill = convertSummaryToBill(summary);
+    dispatch(updateBill(bill));
+    navigate('/updateBill');
+  };
+
   return (
     <>
       <h2>Receipt Summary</h2>
@@ -63,6 +70,9 @@ const BillReview = () => {
             personSummary={overallSummary}
             key={`overallReceipt`}
           />
+          <button className="delete" onClick={(event) => deleteReceipt(event)}>
+            Delete this Receipt
+          </button>
         </div>
         <div className="allReceipts">{peopleReceipts}</div>
       </div>

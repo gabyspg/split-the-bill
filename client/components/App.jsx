@@ -6,15 +6,17 @@ import {
   Link,
   useNavigate,
 } from 'react-router-dom';
+import ResponsiveAppBar from './NavBar.jsx';
 
 const App = () => {
   const navigate = useNavigate();
   return (
     <div id="app">
+      {/* <ResponsiveAppBar /> */}
       <div className="intro">
         <p>
           Welcome to Split the Bill App! Do you have a receipt that you need to
-          split amoungst your family and friends? Split the bill app will make
+          split amongst your family and friends? Split the bill app will make
           this process seemless! Please select from the following options:
         </p>
         <button className="submit" onClick={() => navigate('/newSplit')}>
