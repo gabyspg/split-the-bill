@@ -4,6 +4,9 @@ import * as ReactDOM from 'react-dom/client';
 import App from './components/App.jsx';
 import CreateBill from './components/CreateBill.jsx';
 import BillSummary from './components/BillSummary.jsx';
+import PastBills from './components/PastBills.jsx';
+import BillReview from './components/BillReview.jsx';
+import UpdateBill from './components/UpdateBill.jsx';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
@@ -25,6 +28,18 @@ const router = createBrowserRouter([
   {
     path: '/summary',
     element: <BillSummary />,
+  },
+  {
+    path: '/pastBills',
+    element: <PastBills />,
+  },
+  {
+    path: '/reviewBill',
+    element: <BillReview />,
+  },
+  {
+    path: '/updateBill',
+    element: <UpdateBill />,
   },
 ]);
 

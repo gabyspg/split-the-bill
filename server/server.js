@@ -17,8 +17,16 @@ app.get('/api', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
 
+app.get('/api/getReceipts', summaryController.getReceipts, (req, res) => {
+  return res.status(200).json(res.locals.found);
+});
+
 app.post('/api/saveSummary', summaryController.saveSummary, (req, res) => {
   return res.status(200).json(req.body);
+});
+
+app.put('/api/updateSummary', summaryController.updateSummary, (req, res) => {
+  return res.status(200).json(res.locals.newSummary);
 });
 
 app.use((err, req, res, next) => {

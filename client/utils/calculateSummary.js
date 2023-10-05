@@ -36,6 +36,7 @@ const calculateSummary = (billObj) => {
     tipPercentage: tipPercentage,
     total: total,
     people: {},
+    foodItems: foodItems,
   };
 
   for (let i = 0; i < people.length; i++) {

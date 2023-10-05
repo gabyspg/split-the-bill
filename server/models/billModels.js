@@ -44,6 +44,9 @@ const billSchema = new Schema({
     type: Map,
     of: personSchema,
   },
+  foodItems: [
+    { itemName: String, price: Number, quantity: Number, people: String },
+  ],
 });
 
 // creats a model for the 'bill' collection that will be part of the export

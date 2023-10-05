@@ -7,8 +7,11 @@ import fetch from 'isomorphic-fetch';
 
 const BillSummary = () => {
   const currentBill = useSelector((state) => state.bill);
+  const currentBillSummary = useSelector(
+    (state) => state.billSummary.billSummary
+  );
+
   const summary = calculateSummary(currentBill);
-  console.log(summary);
 
   const saveSummary = (event) => {
     event.preventDefault();
@@ -20,8 +23,24 @@ const BillSummary = () => {
       body: JSON.stringify(summary),
     };
 
-    console.log('before fetch');
     fetch('/api/saveSummary', saveSummaryRequest)
+      .then((res) => res.json())
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
+  };
+
+  const updateSplit = (event) => {
+    event.preventDefault();
+    console.log('currentBillSummary._id', currentBillSummary._id);
+    console.log('summary update', summary);
+    const updateSummaryRequest = {
+      method: 'PUT',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: currentBillSummary._id, update: summary }),
+    };
+
+    fetch('/api/updateSummary', updateSummaryRequest)
       .then((res) => res.json())
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
@@ -47,7 +66,6 @@ const BillSummary = () => {
     total: Number(summary.total),
     items: currentBill.foodItems,
   };
-  console.log('overallSummary', overallSummary);
 
   return (
     <>
@@ -58,7 +76,10 @@ const BillSummary = () => {
           want to access your receipt in the future.
         </p>
         <button className="submit" onClick={(event) => saveSummary(event)}>
-          Save this Split!
+          Save this as a new Split
+        </button>
+        <button className="submit" onClick={(event) => updateSplit(event)}>
+          Update Split
         </button>
       </div>
       <div className="divideReceipts">

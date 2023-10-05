@@ -15,6 +15,7 @@ const PersonReceipt = (props) => {
         quantity={item.quantity}
         name={item.itemName}
         price={item.price}
+        key={`item ${i}`}
       />
     );
   }
@@ -26,7 +27,7 @@ const PersonReceipt = (props) => {
       </div>
       <div className="receipt-items">
         <div className="item-row">
-          <span class="item-quantity">#</span>
+          <span className="item-quantity">#</span>
           <span className="item-name">Items</span>
           <span className="item-price">Price</span>
         </div>

@@ -18,10 +18,10 @@ const App = () => {
           this process seemless! Please select from the following options:
         </p>
         <button className="submit" onClick={() => navigate('/newSplit')}>
-          Split new Bill!
+          Split new Bill
         </button>
-        <button className="submit" onClick={(event) => navigate('/PastBills')}>
-          Review Past Receipts!
+        <button className="submit" onClick={(event) => navigate('/pastBills')}>
+          Review Past Receipts
         </button>
       </div>
     </div>
