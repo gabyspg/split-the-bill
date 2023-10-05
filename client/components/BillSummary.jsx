@@ -25,14 +25,18 @@ const BillSummary = () => {
 
     fetch('/api/saveSummary', saveSummaryRequest)
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log(data);
+        if (data) {
+          alert('Your receipt has been saved as a new split.');
+        }
+        return;
+      })
       .catch((err) => console.log(err));
   };
 
   const updateSplit = (event) => {
     event.preventDefault();
-    console.log('currentBillSummary._id', currentBillSummary._id);
-    console.log('summary update', summary);
     const updateSummaryRequest = {
       method: 'PUT',
       credentials: 'same-origin',
@@ -42,7 +46,13 @@ const BillSummary = () => {
 
     fetch('/api/updateSummary', updateSummaryRequest)
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        console.log('data', data);
+        if (!data) {
+          alert('This is a new split, please save instead of update.');
+        }
+        return;
+      })
       .catch((err) => console.log(err));
   };
 
@@ -79,7 +89,7 @@ const BillSummary = () => {
           Save this as a new Split
         </button>
         <button className="submit" onClick={(event) => updateSplit(event)}>
-          Update Split
+          Apply updates to Split
         </button>
       </div>
       <div className="divideReceipts">

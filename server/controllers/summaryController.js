@@ -25,12 +25,9 @@ summaryController.getReceipts = async (req, res, next) => {
 summaryController.updateSummary = async (req, res, next) => {
   try {
     const summary = req.body.update;
-    console.log('summary', summary);
-
     const newSummary = await Bill.findByIdAndUpdate(req.body.id, summary, {
       new: true,
     });
-    console.log('newSummary', newSummary);
     res.locals.newSummary = newSummary;
 
     return next();
