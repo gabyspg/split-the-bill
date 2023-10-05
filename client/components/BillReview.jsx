@@ -49,9 +49,25 @@ const BillReview = () => {
 
   const deleteReceipt = (event) => {
     event.preventDefault();
-    const bill = convertSummaryToBill(summary);
-    dispatch(updateBill(bill));
-    navigate('/updateBill');
+
+    console.log('in delete');
+    const deleteReceiptRequest = {
+      method: 'DELETE',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+    };
+
+    fetch(`/api/deleteReceipt/${summary._id}`, deleteReceiptRequest)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log('data after req completed', data);
+        if (!data) {
+          alert('Your receipt has been deleted.');
+        }
+        navigate('/');
+        return;
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -70,7 +86,18 @@ const BillReview = () => {
             personSummary={overallSummary}
             key={`overallReceipt`}
           />
-          <button className="delete" onClick={(event) => deleteReceipt(event)}>
+          <button
+            className="delete"
+            onClick={(event) => {
+              if (
+                window.confirm(
+                  'Are you sure you wish to delete this item? This action cannot be undone.'
+                )
+              ) {
+                deleteReceipt(event);
+              }
+            }}
+          >
             Delete this Receipt
           </button>
         </div>

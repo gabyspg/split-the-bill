@@ -36,4 +36,18 @@ summaryController.updateSummary = async (req, res, next) => {
   }
 };
 
+summaryController.deleteReceipt = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    const newSummary = await Bill.findByIdAndDelete(id);
+
+    res.locals.deleted = newSummary;
+
+    return next();
+  } catch (err) {
+    return next(err);
+  }
+};
+
 module.exports = summaryController;
