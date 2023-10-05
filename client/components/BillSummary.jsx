@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import calculateSummary from '../utils/calculateSummary';
 import PersonReceipt from './summary components/PersonReceipt.jsx';
 import fetch from 'isomorphic-fetch';
+import NavBar from './NavBar.jsx';
 
 const BillSummary = () => {
   const currentBill = useSelector((state) => state.bill);
@@ -50,6 +51,8 @@ const BillSummary = () => {
         console.log('data', data);
         if (!data) {
           alert('This is a new split, please save instead of update.');
+        } else if (data) {
+          alert('Update Applied');
         }
         return;
       })
@@ -79,6 +82,7 @@ const BillSummary = () => {
 
   return (
     <>
+      <NavBar />
       <h2>Receipt Summary</h2>
       <div className="intro">
         <p>
@@ -86,7 +90,7 @@ const BillSummary = () => {
           want to access your receipt in the future.
         </p>
         <button className="submit" onClick={(event) => saveSummary(event)}>
-          Save this as a new Split
+          Save as a new Split
         </button>
         <button className="submit" onClick={(event) => updateSplit(event)}>
           Apply updates to Split
@@ -95,7 +99,7 @@ const BillSummary = () => {
       <div className="divideReceipts">
         <div className="overallReceipt">
           <PersonReceipt
-            person={'Overall'}
+            person={summary.billName}
             personSummary={overallSummary}
             key={`overallReceipt`}
           />

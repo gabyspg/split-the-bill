@@ -10,6 +10,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ReceiptDisplay from './ReceiptDisplay.jsx';
 import fetch from 'isomorphic-fetch';
 import { updateBillSummary } from '../slices/billSummarySlice.js';
+import NavBar from './NavBar.jsx';
 
 const PastBills = () => {
   const dispatch = useDispatch();
@@ -50,7 +51,8 @@ const PastBills = () => {
 
   return (
     <>
-      <h2>Receipt Summary</h2>
+      <NavBar />
+      <h2>Split: Past Bills</h2>
       <div className="intro">
         <p>Click the button below to see past receipts!</p>
         <button className="submit" onClick={(event) => seeReceipts(event)}>

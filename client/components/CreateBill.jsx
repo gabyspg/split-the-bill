@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import AddPeople from './form components/AddPeople.jsx';
 import AddItem from './form components/AddItem.jsx';
 import InfoInput from './form components/InfoInput.jsx';
+import NavBar from './NavBar.jsx';
+
 import {
   BrowserRouter,
   Route,
@@ -107,7 +109,8 @@ const CreateBill = () => {
 
   return (
     <>
-      <h2>Split New Bill</h2>
+      <NavBar />
+      <h2>Split: New Split</h2>
       <div className="splitForm">
         <InfoInput
           handleInfoChange={handleInfoChange}
@@ -118,14 +121,18 @@ const CreateBill = () => {
           handlePersonChange={handlePersonChange}
           removePerson={removePerson}
         />
-        <button onClick={addPerson}>Add person</button>
+        <button className="addEntry" onClick={addPerson}>
+          Add person
+        </button>
         <AddItem
           peopleInputFields={people}
           handleFoodChange={handleItemChange}
           foodInputFields={foodItems}
           removeFoodItem={removeItem}
         />
-        <button onClick={addItem}>Add item</button>
+        <button className="addEntry" onClick={addItem}>
+          Add item
+        </button>
         {/* <label className="form-group">Subtotal ($): {totals[0]}</label> */}
         <label className="form-group">
           Tax ($):

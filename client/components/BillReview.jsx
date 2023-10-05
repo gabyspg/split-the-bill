@@ -8,6 +8,7 @@ import {
 } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import PersonReceipt from './summary components/PersonReceipt.jsx';
+import ResponsiveAppBar from './NavBar.jsx';
 import convertSummaryToBill from '../utils/convertFormat.js';
 import { updateBill } from '../slices/billSlice.js';
 
@@ -64,7 +65,7 @@ const BillReview = () => {
         if (!data) {
           alert('Your receipt has been deleted.');
         }
-        navigate('/');
+        navigate('/pastBills');
         return;
       })
       .catch((err) => console.log(err));
@@ -72,17 +73,18 @@ const BillReview = () => {
 
   return (
     <>
+      <ResponsiveAppBar />
       <h2>Receipt Summary</h2>
-      <div className="intro">
-        <p>Click the button below to edit this split!</p>
-        <button className="submit" onClick={(event) => editReceipt(event)}>
-          Edit this receipt
-        </button>
-      </div>
+      {/* <div className="intro"> */}
+      {/* <p>Click the button below to edit this split!</p> */}
+      <button className="submit" onClick={(event) => editReceipt(event)}>
+        Edit this receipt
+      </button>
+      {/* </div> */}
       <div className="divideReceipts">
         <div className="overallReceipt">
           <PersonReceipt
-            person={'Overall'}
+            person={summary.billName}
             personSummary={overallSummary}
             key={`overallReceipt`}
           />

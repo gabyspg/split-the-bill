@@ -12,7 +12,8 @@ const App = () => {
   const navigate = useNavigate();
   return (
     <div id="app">
-      {/* <ResponsiveAppBar /> */}
+      <ResponsiveAppBar />
+      <h2>Home</h2>
       <div className="intro">
         <p>
           Welcome to Split the Bill App! Do you have a receipt that you need to
