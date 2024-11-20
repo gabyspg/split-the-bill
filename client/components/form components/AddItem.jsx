@@ -38,16 +38,18 @@ const AddItem = (props) => {
               />
               <select
                 multiple
+                size="3"
                 name="people"
                 onChange={(event) => handleFoodChange(index, event)}
                 value={foodItem.people}
               >
-                <option value="">Select people</option>
-                {peopleInputFields.map((person, personIndex) => (
-                  <option key={personIndex} value={person.name}>
-                    {person.name}
-                  </option>
-                ))}
+                <optgroup label="Select People">
+                  {peopleInputFields.map((person, personIndex) => (
+                    <option key={personIndex} value={person.name}>
+                      {person.name}
+                    </option>
+                  ))}
+                </optgroup>
               </select>
               <button
                 className="removeEntry"

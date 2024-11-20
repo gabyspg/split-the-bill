@@ -54,10 +54,11 @@ const calculateSummary = (billObj) => {
       if (!peopleSet.has(person)) {
         continue;
       }
+      let quantity = Number(item.quantity / peopleSet.size);
       const itemObj = {
         itemName: item.itemName,
         price: item.price,
-        quantity: Number(item.quantity / peopleSet.size).toFixed(1),
+        quantity: Number.isInteger(quantity) ? quantity : quantity.toFixed(1),
       };
 
       personSummary.items.push(itemObj);
