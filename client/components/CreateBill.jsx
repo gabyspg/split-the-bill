@@ -14,7 +14,7 @@ const CreateBill = () => {
 
   const [people, setPeople] = useState([{ name: '' }]);
   const [foodItems, setFoodItems] = useState([
-    { itemName: '', price: '', quantity: '', people: '' },
+    { itemName: '', price: '', quantity: '', people: [] },
   ]);
   const [billInfo, setBillInfo] = useState({
     billName: '',
@@ -37,8 +37,16 @@ const CreateBill = () => {
   };
 
   const handleFoodChange = (index, event) => {
+    const { name } = event.target;
     let data = JSON.parse(JSON.stringify(foodItems));
-    data[index][event.target.name] = event.target.value;
+    if (name === 'people') {
+      const selectedOptions = Array.from(event.target.selectedOptions).map(
+        (option) => option.value
+      );
+      data[index][name] = selectedOptions;
+    } else {
+      data[index][name] = event.target.value;
+    }
     setFoodItems(data);
   };
 

@@ -8,7 +8,7 @@ const AddPeople = (props) => {
       <label className="form-group">People:</label>
       {peopleInputFields.map((person, index) => {
         return (
-          <li>
+          <li key={index}>
             <label key={index}>
               Person {index + 1}:
               <input

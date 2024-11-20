@@ -13,7 +13,7 @@ const AddItem = (props) => {
       <label className="form-group">Food Items:</label>
       {foodInputFields.map((foodItem, index) => {
         return (
-          <li>
+          <li key={index}>
             <label className="form-group" key={index}>
               Food item {index + 1}:
               <input
@@ -37,6 +37,7 @@ const AddItem = (props) => {
                 onChange={(event) => handleFoodChange(index, event)}
               />
               <select
+                multiple
                 name="people"
                 onChange={(event) => handleFoodChange(index, event)}
                 value={foodItem.people}
