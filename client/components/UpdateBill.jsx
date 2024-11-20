@@ -1,16 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import AddPeople from './form components/AddPeople.jsx';
 import AddItem from './form components/AddItem.jsx';
 import InfoInput from './form components/InfoInput.jsx';
 import NavBar from './NavBar.jsx';
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Link,
-  useNavigate,
-} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { updateBill } from '../slices/billSlice.js';
 
 const UpdateBill = () => {
@@ -19,7 +13,6 @@ const UpdateBill = () => {
 
   const currentBill = useSelector((state) => state.bill);
 
-  // const [totals, setTotals] = useState([0, 0]);
   const [people, setPeople] = useState(currentBill.people);
   const [foodItems, setFoodItems] = useState(currentBill.foodItems);
   const [billInfo, setBillInfo] = useState(currentBill.billInfo);
@@ -40,7 +33,6 @@ const UpdateBill = () => {
     let data = JSON.parse(JSON.stringify(foodItems));
     data[index][event.target.name] = event.target.value;
     setFoodItems(data);
-    // calculateTotals();
   };
 
   const addPerson = () => {

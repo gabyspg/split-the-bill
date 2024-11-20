@@ -1,11 +1,5 @@
-import React, { useEffect } from 'react';
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Link,
-  useNavigate,
-} from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import PersonReceipt from './summary components/PersonReceipt.jsx';
 import ResponsiveAppBar from './NavBar.jsx';
@@ -50,8 +44,6 @@ const BillReview = () => {
 
   const deleteReceipt = (event) => {
     event.preventDefault();
-
-    console.log('in delete');
     const deleteReceiptRequest = {
       method: 'DELETE',
       credentials: 'same-origin',

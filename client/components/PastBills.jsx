@@ -1,12 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Link,
-  useNavigate,
-} from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import ReceiptDisplay from './ReceiptDisplay.jsx';
 import fetch from 'isomorphic-fetch';
 import { updateBillSummary } from '../slices/billSummarySlice.js';
@@ -40,6 +34,10 @@ const PastBills = () => {
       .catch((err) => console.log(err));
   };
 
+  useEffect(() => {
+    seeReceipts();
+  }, []);
+
   const renderReceipt = receipts.map((receipt, index) => (
     <ReceiptDisplay
       reviewReceipt={reviewReceipt}
@@ -53,12 +51,12 @@ const PastBills = () => {
     <>
       <NavBar />
       <h2>Split: Past Bills</h2>
-      <div className="intro">
+      {/* <div className="intro">
         <p>Click the button below to see past receipts!</p>
         <button className="submit" onClick={(event) => seeReceipts(event)}>
           See Past Bills
         </button>
-      </div>
+      </div> */}
       <div className="allReceipts">{renderReceipt}</div>
     </>
   );

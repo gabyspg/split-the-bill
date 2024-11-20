@@ -1,11 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Link,
-  useNavigate,
-} from 'react-router-dom';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import ResponsiveAppBar from './NavBar.jsx';
 
 const App = () => {

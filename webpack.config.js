@@ -6,7 +6,7 @@ module.exports = {
   entry: './client/index.js',
   output: {
     filename: 'bundle.js',
-    path: '/home/gabyspg/split-the-bill/build',
+    path: path.resolve(__dirname, './build'),
     publicPath: '/',
   },
   module: {
@@ -34,7 +34,7 @@ module.exports = {
   devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin({
-      template: '/home/gabyspg/split-the-bill/index.html',
+      template: path.resolve(__dirname, './index.html'),
     }),
   ],
 };

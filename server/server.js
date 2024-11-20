@@ -29,9 +29,13 @@ app.put('/api/updateSummary', summaryController.updateSummary, (req, res) => {
   return res.status(200).json(res.locals.newSummary);
 });
 
-app.delete('/api/deleteReceipt/:id', summaryController.deleteReceipt, (req, res) => {
-  return res.status(200).json(res.locals.deleted);
-});
+app.delete(
+  '/api/deleteReceipt/:id',
+  summaryController.deleteReceipt,
+  (req, res) => {
+    return res.status(200).json(res.locals.deleted);
+  }
+);
 
 app.use((err, req, res, next) => {
   const defaultErr = {
@@ -46,6 +50,6 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening on port: ${PORT}`);
-}); //listens on port 3000 -> http://localhost:3000/
+});
 
 module.exports = app;

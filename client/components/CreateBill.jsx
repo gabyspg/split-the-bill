@@ -1,24 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import AddPeople from './form components/AddPeople.jsx';
 import AddItem from './form components/AddItem.jsx';
 import InfoInput from './form components/InfoInput.jsx';
 import NavBar from './NavBar.jsx';
 
-import {
-  BrowserRouter,
-  Route,
-  Switch,
-  Link,
-  useNavigate,
-} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { updateBill } from '../slices/billSlice.js';
 
 const CreateBill = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const [totals, setTotals] = useState([0, 0]);
   const [people, setPeople] = useState([{ name: '' }]);
   const [foodItems, setFoodItems] = useState([
     { itemName: '', price: '', quantity: '', people: '' },
@@ -43,11 +36,10 @@ const CreateBill = () => {
     setPeople(data);
   };
 
-  const handleItemChange = (index, event) => {
+  const handleFoodChange = (index, event) => {
     let data = JSON.parse(JSON.stringify(foodItems));
     data[index][event.target.name] = event.target.value;
     setFoodItems(data);
-    // calculateTotals();
   };
 
   const addPerson = () => {
@@ -99,7 +91,7 @@ const CreateBill = () => {
   const submit = (event) => {
     event.preventDefault();
     const ready = checkFields();
-    if (ready === true) {
+    if (ready) {
       dispatch(updateBill({ billInfo, people, foodItems }));
       navigate('/summary');
     } else {
@@ -126,7 +118,7 @@ const CreateBill = () => {
         </button>
         <AddItem
           peopleInputFields={people}
-          handleFoodChange={handleItemChange}
+          handleFoodChange={handleFoodChange}
           foodInputFields={foodItems}
           removeFoodItem={removeItem}
         />

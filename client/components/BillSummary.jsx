@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Route, Switch, Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import calculateSummary from '../utils/calculateSummary';
 import PersonReceipt from './summary components/PersonReceipt.jsx';
 import fetch from 'isomorphic-fetch';
