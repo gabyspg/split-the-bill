@@ -29,9 +29,17 @@ const UpdateBill = () => {
     setPeople(data);
   };
 
-  const handleItemChange = (index, event) => {
+  const handleFoodChange = (index, event) => {
+    const { name } = event.target;
     let data = JSON.parse(JSON.stringify(foodItems));
-    data[index][event.target.name] = event.target.value;
+    if (name === 'people') {
+      const selectedOptions = Array.from(event.target.selectedOptions).map(
+        (option) => option.value
+      );
+      data[index][name] = selectedOptions;
+    } else {
+      data[index][name] = event.target.value;
+    }
     setFoodItems(data);
   };
 
@@ -111,14 +119,13 @@ const UpdateBill = () => {
         </button>
         <AddItem
           peopleInputFields={people}
-          handleFoodChange={handleItemChange}
+          handleFoodChange={handleFoodChange}
           foodInputFields={foodItems}
           removeFoodItem={removeItem}
         />
         <button className="addEntry" onClick={addItem}>
           Add item
         </button>
-        {/* <label className="form-group">Subtotal ($): {totals[0]}</label> */}
         <label className="form-group">
           Tax ($):
           <input
@@ -139,7 +146,6 @@ const UpdateBill = () => {
             onChange={(event) => handleInfoChange(event)}
           />
         </label>
-        {/* <label className="form-group">Total ($): {totals[1]}</label> */}
         <button className="submit" onClick={(event) => submit(event)}>
           Update the Bill
         </button>

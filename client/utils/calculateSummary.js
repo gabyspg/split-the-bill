@@ -50,17 +50,19 @@ const calculateSummary = (billObj) => {
     };
     for (let j = 0; j < foodItems.length; j++) {
       const item = foodItems[j];
-      if (item.people !== person) {
+      const peopleSet = new Set(item.people);
+      if (!peopleSet.has(person)) {
         continue;
       }
       const itemObj = {
         itemName: item.itemName,
         price: item.price,
-        quantity: item.quantity,
+        quantity: Number(item.quantity / peopleSet.size).toFixed(1),
       };
 
       personSummary.items.push(itemObj);
-      const itemTotal = Number(item.price) * Number(item.quantity);
+      const itemTotal =
+        Number(item.price) * Number(item.quantity / peopleSet.size);
       personSummary.subtotal += itemTotal;
     }
     const personTax = Number(personSummary.subtotal * taxPercentage);

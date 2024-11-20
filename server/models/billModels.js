@@ -45,7 +45,7 @@ const billSchema = new Schema({
     of: personSchema,
   },
   foodItems: [
-    { itemName: String, price: Number, quantity: Number, people: String },
+    { itemName: String, price: Number, quantity: Number, people: Array },
   ],
 });
 

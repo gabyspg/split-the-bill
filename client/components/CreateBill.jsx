@@ -14,7 +14,7 @@ const CreateBill = () => {
 
   const [people, setPeople] = useState([{ name: '' }]);
   const [foodItems, setFoodItems] = useState([
-    { itemName: '', price: '', quantity: '', people: [] },
+    { itemName: '', price: '', quantity: '', people: '' },
   ]);
   const [billInfo, setBillInfo] = useState({
     billName: '',
