@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import AddPeople from './form components/AddPeople.jsx';
-import AddItem from './form components/AddItem.jsx';
-import InfoInput from './form components/InfoInput.jsx';
+import AddPeople from './formComponents/AddPeople.jsx';
+import AddItem from './formComponents/AddItem.jsx';
+import InfoInput from './formComponents/InfoInput.jsx';
 import NavBar from './NavBar.jsx';
 
 import { useNavigate } from 'react-router-dom';

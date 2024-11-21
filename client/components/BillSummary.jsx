@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import calculateSummary from '../utils/calculateSummary';
-import PersonReceipt from './summary components/PersonReceipt.jsx';
+import PersonReceipt from './summaryComponents/PersonReceipt.jsx';
 import fetch from 'isomorphic-fetch';
 import NavBar from './NavBar.jsx';
 

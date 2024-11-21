@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import PersonReceipt from './summary components/PersonReceipt.jsx';
+import PersonReceipt from './summaryComponents/PersonReceipt.jsx';
 import ResponsiveAppBar from './NavBar.jsx';
 import convertSummaryToBill from '../utils/convertFormat.js';
 import { updateBill } from '../slices/billSlice.js';

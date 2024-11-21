@@ -15,7 +15,7 @@ const AddItem = (props) => {
       {foodInputFields.map((foodItem, index) => {
         return (
           <li key={index}>
-            <label className="form-group" key={index}>
+            <label key={index}>
               Food item {index + 1}:
               <input
                 name="itemName"
