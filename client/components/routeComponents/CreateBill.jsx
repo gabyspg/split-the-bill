@@ -9,7 +9,7 @@ const CreateBill = () => {
 
   return (
     <>
-      <BillForm isNewBill={true} />;
+      <BillForm isNewBill={true} />
     </>
   );
 };

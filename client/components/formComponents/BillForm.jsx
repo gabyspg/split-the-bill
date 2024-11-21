@@ -65,25 +65,16 @@ const BillForm = ({ isNewBill }) => {
   };
 
   const checkFields = () => {
-    if (people.length === 0 || foodItems.length === 0) {
+    if (
+      people.length === 0 ||
+      foodItems.length === 0 ||
+      people.some((person) => person.name === '') ||
+      foodItems.some((item) =>
+        Object.values(item).some((value) => value === '')
+      ) ||
+      Object.values(billInfo).some((value) => value === '')
+    ) {
       return false;
-    }
-    for (let i = 0; i < people.length; i++) {
-      if (people[i].name === '') {
-        return false;
-      }
-    }
-    for (let i = 0; i < foodItems.length; i++) {
-      for (let key in foodItems[i]) {
-        if (foodItems[i][key] === '') {
-          return false;
-        }
-      }
-    }
-    for (let key in billInfo) {
-      if (billInfo[key] === '') {
-        return false;
-      }
     }
     return true;
   };
