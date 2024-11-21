@@ -26,7 +26,7 @@ const initialState = {
         total: 0,
       },
     },
-    foodItems: [{ itemName: '', price: '', quantity: '', people: '' }],
+    foodItems: [{ itemName: '', price: '', quantity: '', people: [] }],
   },
 };
 

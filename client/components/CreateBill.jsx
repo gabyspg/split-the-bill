@@ -14,7 +14,7 @@ const CreateBill = () => {
 
   const [people, setPeople] = useState([{ name: '' }]);
   const [foodItems, setFoodItems] = useState([
-    { itemName: '', price: '', quantity: '', people: '' },
+    { itemName: '', price: '', quantity: '', people: [] },
   ]);
   const [billInfo, setBillInfo] = useState({
     billName: '',
@@ -37,15 +37,14 @@ const CreateBill = () => {
   };
 
   const handleFoodChange = (index, event) => {
-    const { name } = event.target;
+    const { name, value } = event.target;
     let data = JSON.parse(JSON.stringify(foodItems));
+
     if (name === 'people') {
-      const selectedOptions = Array.from(event.target.selectedOptions).map(
-        (option) => option.value
-      );
-      data[index][name] = selectedOptions;
+      const valueArray = typeof value === 'string' ? value.split(',') : value;
+      data[index][name] = valueArray;
     } else {
-      data[index][name] = event.target.value;
+      data[index][name] = value;
     }
     setFoodItems(data);
   };
@@ -62,7 +61,7 @@ const CreateBill = () => {
   };
 
   const addItem = () => {
-    let newItem = { itemName: '', price: '', quantity: '', people: '' };
+    let newItem = { itemName: '', price: '', quantity: '', people: [] };
     setFoodItems([...foodItems, newItem]);
   };
 
@@ -133,7 +132,6 @@ const CreateBill = () => {
         <button className="addEntry" onClick={addItem}>
           Add item
         </button>
-        {/* <label className="form-group">Subtotal ($): {totals[0]}</label> */}
         <label className="form-group">
           Tax ($):
           <input
@@ -154,7 +152,6 @@ const CreateBill = () => {
             onChange={(event) => handleInfoChange(event)}
           />
         </label>
-        {/* <label className="form-group">Total ($): {totals[1]}</label> */}
         <button className="submit" onClick={(event) => submit(event)}>
           Split the Bill
         </button>

@@ -9,7 +9,7 @@ const initialState = {
     tip: '',
   },
   people: [{ name: '' }],
-  foodItems: [{ itemName: '', price: '', quantity: '', people: '' }],
+  foodItems: [{ itemName: '', price: '', quantity: '', people: [] }],
 };
 
 export const billSlice = createSlice({

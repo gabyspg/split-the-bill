@@ -1,4 +1,5 @@
 import React from 'react';
+import MultipleSelectCheckmarks from './MultipleSelectCheckmarks.jsx';
 
 const AddItem = (props) => {
   const {
@@ -36,21 +37,12 @@ const AddItem = (props) => {
                 value={foodItem.quantity}
                 onChange={(event) => handleFoodChange(index, event)}
               />
-              <select
-                multiple
-                size="3"
-                name="people"
-                onChange={(event) => handleFoodChange(index, event)}
-                value={foodItem.people}
-              >
-                <optgroup label="Select People">
-                  {peopleInputFields.map((person, personIndex) => (
-                    <option key={personIndex} value={person.name}>
-                      {person.name}
-                    </option>
-                  ))}
-                </optgroup>
-              </select>
+              <MultipleSelectCheckmarks
+                peopleInputFields={peopleInputFields}
+                peopleSelect={foodItem.people}
+                handleFoodChange={handleFoodChange}
+                index={index}
+              />
               <button
                 className="removeEntry"
                 onClick={() => removeFoodItem(index)}
