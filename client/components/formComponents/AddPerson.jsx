@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AddPeople = (props) => {
+const AddPerson = (props) => {
   const { peopleInputFields, handlePersonChange, removePerson } = props;
 
   return (
@@ -31,4 +31,4 @@ const AddPeople = (props) => {
   );
 };
 
-export default AddPeople;
+export default AddPerson;

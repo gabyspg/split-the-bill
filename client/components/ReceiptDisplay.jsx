@@ -16,7 +16,7 @@ const ReceiptDisplay = (props) => {
         className="review"
         onClick={(event, receipt) => reviewReceipt(event, id)}
       >
-        Review Bill
+        Review
       </button>
     </div>
   );

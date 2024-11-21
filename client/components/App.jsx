@@ -15,7 +15,7 @@ const App = () => {
           Bill, the process becomes seamless.
         </p>
         <p>Please choose from the following options:</p>
-        <button className="submit" onClick={() => navigate('/newSplit')}>
+        <button className="submit" onClick={() => navigate('/createBill')}>
           Split new Bill
         </button>
         <button className="submit" onClick={(event) => navigate('/pastBills')}>

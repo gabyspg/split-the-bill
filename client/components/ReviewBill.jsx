@@ -6,7 +6,7 @@ import ResponsiveAppBar from './NavBar.jsx';
 import convertSummaryToBill from '../utils/convertFormat.js';
 import { updateBill } from '../slices/billSlice.js';
 
-const BillReview = () => {
+const ReviewBill = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -100,4 +100,4 @@ const BillReview = () => {
     </>
   );
 };
-export default BillReview;
+export default ReviewBill;

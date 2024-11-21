@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import AddPeople from './AddPeople.jsx';
+import AddPerson from './AddPerson.jsx';
 import AddItem from './AddItem.jsx';
 import InfoInput from './InfoInput.jsx';
 import NavBar from '../NavBar.jsx';
@@ -108,7 +108,7 @@ const BillForm = ({ isNewBill }) => {
           handleInfoChange={handleInfoChange}
           billInfoFields={billInfo}
         />
-        <AddPeople
+        <AddPerson
           peopleInputFields={people}
           handlePersonChange={handlePersonChange}
           removePerson={removePerson}

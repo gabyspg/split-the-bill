@@ -5,7 +5,7 @@ import App from './components/App.jsx';
 import CreateBill from './components/CreateBill.jsx';
 import BillSummary from './components/BillSummary.jsx';
 import PastBills from './components/PastBills.jsx';
-import BillReview from './components/BillReview.jsx';
+import ReviewBill from './components/ReviewBill.jsx';
 import UpdateBill from './components/UpdateBill.jsx';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: '/newSplit',
+    path: '/createBill',
     element: <CreateBill />,
   },
   {
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/reviewBill',
-    element: <BillReview />,
+    element: <ReviewBill />,
   },
   {
     path: '/updateBill',
