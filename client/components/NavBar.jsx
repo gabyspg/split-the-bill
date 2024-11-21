@@ -50,7 +50,7 @@ function ResponsiveAppBar() {
               to="/pastBills"
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-              Past Bills
+              Past Splits
             </Button>
           </Box>
         </Toolbar>

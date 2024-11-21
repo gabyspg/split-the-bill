@@ -67,12 +67,9 @@ const ReviewBill = () => {
     <>
       <NavBar />
       <h2>Receipt Summary</h2>
-      {/* <div className="intro"> */}
-      {/* <p>Click the button below to edit this split!</p> */}
       <button className="submit" onClick={(event) => editReceipt(event)}>
-        Edit this receipt
+        Edit
       </button>
-      {/* </div> */}
       <div className="divideReceipts">
         <div className="overallReceipt">
           <PersonReceipt

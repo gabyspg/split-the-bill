@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import ResponsiveAppBar from './NavBar.jsx';
+import NavBar from './NavBar.jsx';
 
 const App = () => {
   const navigate = useNavigate();
   return (
     <div id="app">
-      <ResponsiveAppBar />
+      <NavBar />
       <h2>Home</h2>
       <div className="intro">
         <p>
@@ -16,10 +16,10 @@ const App = () => {
         </p>
         <p>Please choose from the following options:</p>
         <button className="submit" onClick={() => navigate('/createBill')}>
-          Split new Bill
+          New Split
         </button>
-        <button className="submit" onClick={(event) => navigate('/pastBills')}>
-          Review Past Receipts
+        <button className="submit" onClick={() => navigate('/pastBills')}>
+          Review Past Splits
         </button>
       </div>
     </div>

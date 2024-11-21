@@ -28,7 +28,6 @@ export const billSlice = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
 export const { updateBill, resetBill } = billSlice.actions;
 
 export default billSlice.reducer;
