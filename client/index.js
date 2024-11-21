@@ -12,8 +12,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { store } from './store';
 import { Provider } from 'react-redux';
-
-// uncomment so that webpack can bundle styles
 import styles from './scss/_app.scss';
 
 const router = createBrowserRouter([

@@ -38,10 +38,13 @@ export const billSummarySlice = createSlice({
       const { billSummary } = action.payload;
       state.billSummary = billSummary;
     },
+    resetBillSummary: () => {
+      return initialState;
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { updateBillSummary } = billSummarySlice.actions;
+export const { updateBillSummary, resetBillSummary } = billSummarySlice.actions;
 
 export default billSummarySlice.reducer;

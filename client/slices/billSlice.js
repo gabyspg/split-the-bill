@@ -22,10 +22,13 @@ export const billSlice = createSlice({
       state.people = people;
       state.foodItems = foodItems;
     },
+    resetBill: () => {
+      return initialState;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { updateBill } = billSlice.actions;
+export const { updateBill, resetBill } = billSlice.actions;
 
 export default billSlice.reducer;
