@@ -7,31 +7,29 @@ const cors = require('cors');
 app.use(express.json());
 app.use(cors());
 
-const summaryController = require('./controllers/summaryController.js');
+const receiptController = require('./controllers/receiptController.js');
 
-// statically serve everything in the build folder on the route '/build'
 app.use('/build', express.static(path.join(__dirname, '../build')));
 
-// serve index.html on the route '/'
 app.get('/api', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
 
-app.get('/api/getReceipts', summaryController.getReceipts, (req, res) => {
+app.get('/api/getReceipts', receiptController.getReceipts, (req, res) => {
   return res.status(200).json(res.locals.found);
 });
 
-app.post('/api/saveSummary', summaryController.saveSummary, (req, res) => {
+app.post('/api/saveSummary', receiptController.saveSummary, (req, res) => {
   return res.status(200).json(req.body);
 });
 
-app.put('/api/updateSummary', summaryController.updateSummary, (req, res) => {
+app.put('/api/updateSummary', receiptController.updateSummary, (req, res) => {
   return res.status(200).json(res.locals.newSummary);
 });
 
 app.delete(
   '/api/deleteReceipt/:id',
-  summaryController.deleteReceipt,
+  receiptController.deleteReceipt,
   (req, res) => {
     return res.status(200).json(res.locals.deleted);
   }

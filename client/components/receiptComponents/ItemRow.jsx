@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ItemsRow = (props) => {
+const ItemRow = (props) => {
   let { name, price, quantity } = props;
 
   if (isNaN(price) || price === '') {
@@ -17,4 +17,4 @@ const ItemsRow = (props) => {
   );
 };
 
-export default ItemsRow;
+export default ItemRow;

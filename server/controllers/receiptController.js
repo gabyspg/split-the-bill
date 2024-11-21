@@ -1,7 +1,7 @@
 const Bill = require('../models/billModels');
-const summaryController = {};
+const receiptController = {};
 
-summaryController.saveSummary = async (req, res, next) => {
+receiptController.saveSummary = async (req, res, next) => {
   try {
     const summary = new Bill(req.body);
     await summary.save();
@@ -15,7 +15,7 @@ summaryController.saveSummary = async (req, res, next) => {
   }
 };
 
-summaryController.getReceipts = async (req, res, next) => {
+receiptController.getReceipts = async (req, res, next) => {
   try {
     const search = req.body;
     const all = await Bill.find(search);
@@ -30,7 +30,7 @@ summaryController.getReceipts = async (req, res, next) => {
   }
 };
 
-summaryController.updateSummary = async (req, res, next) => {
+receiptController.updateSummary = async (req, res, next) => {
   try {
     const summary = req.body.update;
     const newSummary = await Bill.findByIdAndUpdate(req.body.id, summary, {
@@ -47,7 +47,7 @@ summaryController.updateSummary = async (req, res, next) => {
   }
 };
 
-summaryController.deleteReceipt = async (req, res, next) => {
+receiptController.deleteReceipt = async (req, res, next) => {
   try {
     const { id } = req.params;
     const deletedSummary = await Bill.findByIdAndDelete(id);
@@ -62,4 +62,4 @@ summaryController.deleteReceipt = async (req, res, next) => {
   }
 };
 
-module.exports = summaryController;
+module.exports = receiptController;

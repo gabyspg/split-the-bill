@@ -1,5 +1,5 @@
 import React from 'react';
-import BillForm from './formComponents/BillForm.jsx';
+import BillForm from '../formComponents/BillForm.jsx';
 
 const UpdateBill = () => {
   return (

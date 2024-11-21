@@ -1,10 +1,10 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import PersonReceipt from './summaryComponents/PersonReceipt.jsx';
-import ResponsiveAppBar from './NavBar.jsx';
-import convertSummaryToBill from '../utils/convertFormat.js';
-import { updateBill } from '../slices/billSlice.js';
+import PersonReceipt from '../receiptComponents/PersonReceipt.jsx';
+import NavBar from '../NavBar.jsx';
+import convertSummaryToBill from '../../utils/convertFormat.js';
+import { updateBill } from '../../slices/billSlice.js';
 
 const ReviewBill = () => {
   const dispatch = useDispatch();
@@ -65,7 +65,7 @@ const ReviewBill = () => {
 
   return (
     <>
-      <ResponsiveAppBar />
+      <NavBar />
       <h2>Receipt Summary</h2>
       {/* <div className="intro"> */}
       {/* <p>Click the button below to edit this split!</p> */}

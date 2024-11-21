@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import ReceiptDisplay from './ReceiptDisplay.jsx';
+import ReceiptDisplay from '../receiptComponents/ReceiptDisplay.jsx';
 import fetch from 'isomorphic-fetch';
-import { updateBillSummary } from '../slices/billSummarySlice.js';
-import NavBar from './NavBar.jsx';
+import { updateBillSummary } from '../../slices/billSummarySlice.js';
+import NavBar from '../NavBar.jsx';
 
 const PastBills = () => {
   const dispatch = useDispatch();

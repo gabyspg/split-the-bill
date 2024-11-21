@@ -2,11 +2,11 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 
 import App from './components/App.jsx';
-import CreateBill from './components/CreateBill.jsx';
-import BillSummary from './components/BillSummary.jsx';
-import PastBills from './components/PastBills.jsx';
-import ReviewBill from './components/ReviewBill.jsx';
-import UpdateBill from './components/UpdateBill.jsx';
+import CreateBill from './components/routeComponents/CreateBill.jsx';
+import BillSummary from './components/routeComponents/BillSummary.jsx';
+import PastBills from './components/routeComponents/PastBills.jsx';
+import ReviewBill from './components/routeComponents/ReviewBill.jsx';
+import UpdateBill from './components/routeComponents/UpdateBill.jsx';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 

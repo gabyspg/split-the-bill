@@ -1,9 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import calculateSummary from '../utils/calculateSummary';
-import PersonReceipt from './summaryComponents/PersonReceipt.jsx';
+import calculateSummary from '../../utils/calculateSummary.js';
+import PersonReceipt from '../receiptComponents/PersonReceipt.jsx';
 import fetch from 'isomorphic-fetch';
-import NavBar from './NavBar.jsx';
+import NavBar from '../NavBar.jsx';
 
 const BillSummary = () => {
   const currentBill = useSelector((state) => state.bill);

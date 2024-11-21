@@ -1,6 +1,6 @@
 import React from 'react';
 import SummaryRow from './SummaryRow.jsx';
-import ItemsRow from './ItemsRow.jsx';
+import ItemRow from './ItemRow.jsx';
 
 const PersonReceipt = (props) => {
   const { person, personSummary } = props;
@@ -11,7 +11,7 @@ const PersonReceipt = (props) => {
   for (let i = 0; i < items.length; i++) {
     const item = items[i];
     itemsList.push(
-      <ItemsRow
+      <ItemRow
         quantity={item.quantity}
         name={item.itemName}
         price={item.price}
