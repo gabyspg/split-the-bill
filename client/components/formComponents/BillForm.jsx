@@ -54,7 +54,7 @@ const BillForm = ({ isNewBill }) => {
   };
 
   const addItem = () => {
-    let newItem = { itemName: '', price: '', quantity: '', people: '' };
+    let newItem = { itemName: '', price: '', quantity: '', people: [] };
     setFoodItems([...foodItems, newItem]);
   };
 
