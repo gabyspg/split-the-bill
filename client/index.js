@@ -20,16 +20,16 @@ const router = createBrowserRouter([
     element: <CreateSplit />,
   },
   {
+    path: '/updateSplit',
+    element: <UpdateSplit />,
+  },
+  {
     path: '/splitSummary',
     element: <SplitSummary />,
   },
   {
     path: '/pastSplits',
     element: <PastSplits />,
-  },
-  {
-    path: '/updateSplit',
-    element: <UpdateSplit />,
   },
 ]);
 

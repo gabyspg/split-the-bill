@@ -48,33 +48,35 @@ const MultipleSelectCheckmarks = ({
             backgroundColor: '#f5f5f5',
           }}
         >
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              sx={{
-                fontSize: '12px',
-                lineHeight: '19.5px',
-                padding: '4px',
-                height: '19.5px',
-              }}
-            >
-              <Checkbox
-                checked={peopleSelect.includes(name)}
-                sx={{
-                  padding: '0 4px',
-                }}
-              />
-              <ListItemText
-                primary={name}
-                disableTypography={true}
+          {names.map((name) =>
+            name ? (
+              <MenuItem
+                key={name}
+                value={name}
                 sx={{
                   fontSize: '12px',
-                  textAlign: 'left',
+                  lineHeight: '19.5px',
+                  padding: '4px',
+                  height: '19.5px',
                 }}
-              />
-            </MenuItem>
-          ))}
+              >
+                <Checkbox
+                  checked={peopleSelect.includes(name)}
+                  sx={{
+                    padding: '0 4px',
+                  }}
+                />
+                <ListItemText
+                  primary={name}
+                  disableTypography={true}
+                  sx={{
+                    fontSize: '12px',
+                    textAlign: 'left',
+                  }}
+                />
+              </MenuItem>
+            ) : null
+          )}
         </Select>
       </FormControl>
     </div>
