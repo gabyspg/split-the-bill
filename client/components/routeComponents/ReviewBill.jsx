@@ -4,13 +4,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import PersonReceipt from '../receiptComponents/PersonReceipt.jsx';
 import NavBar from '../NavBar.jsx';
 import convertSummaryToBill from '../../utils/convertFormat.js';
-import { updateBill } from '../../slices/billSlice.js';
+import { updateReceipt } from '../../slices/receiptSlice.js';
 
 const ReviewBill = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const currentState = useSelector((state) => state.billSummary);
+  const currentState = useSelector((state) => state.split);
   const summary = currentState.billSummary;
 
   const peopleReceipts = [];
@@ -38,7 +38,7 @@ const ReviewBill = () => {
   const editReceipt = (event) => {
     event.preventDefault();
     const bill = convertSummaryToBill(summary);
-    dispatch(updateBill(bill));
+    dispatch(updateReceipt(bill));
     navigate('/updateBill');
   };
 

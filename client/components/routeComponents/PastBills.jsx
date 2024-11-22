@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import ReceiptDisplay from '../receiptComponents/ReceiptDisplay.jsx';
 import fetch from 'isomorphic-fetch';
-import { updateBillSummary } from '../../slices/billSummarySlice.js';
+import { updateSplitSummary } from '../../slices/splitSlice.js';
 import NavBar from '../NavBar.jsx';
 
 const PastBills = () => {
@@ -14,11 +14,11 @@ const PastBills = () => {
 
   const reviewReceipt = (event, id) => {
     event.preventDefault();
-    dispatch(updateBillSummary({ billSummary: receipts[id] }));
+    dispatch(updateSplitSummary({ billSummary: receipts[id] }));
     navigate('/reviewBill');
   };
 
-  const seeReceipts = (event) => {
+  const seeReceipts = () => {
     const getReceiptsRequest = {
       method: 'GET',
       credentials: 'same-origin',
@@ -51,12 +51,6 @@ const PastBills = () => {
     <>
       <NavBar />
       <h2>Split: Past Bills</h2>
-      {/* <div className="intro">
-        <p>Click the button below to see past receipts!</p>
-        <button className="submit" onClick={(event) => seeReceipts(event)}>
-          See Past Bills
-        </button>
-      </div> */}
       <div className="allReceipts">{renderReceipt}</div>
     </>
   );

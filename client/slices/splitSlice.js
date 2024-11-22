@@ -30,21 +30,21 @@ const initialState = {
   },
 };
 
-export const billSummarySlice = createSlice({
-  name: 'billSummary',
+export const splitSlice = createSlice({
+  name: 'splitSummary',
   initialState,
   reducers: {
-    updateBillSummary: (state, action) => {
+    updateSplitSummary: (state, action) => {
       const { billSummary } = action.payload;
       state.billSummary = billSummary;
     },
-    resetBillSummary: () => {
+    resetSplitSummary: () => {
       return initialState;
-    }
+    },
   },
 });
 
-// Action creators are generated for each case reducer function
-export const { updateBillSummary, resetBillSummary } = billSummarySlice.actions;
+export const { updateSplitSummary, resetSplitSummary } =
+  splitSlice.actions;
 
-export default billSummarySlice.reducer;
+export default splitSlice.reducer;

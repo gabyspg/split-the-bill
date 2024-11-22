@@ -6,9 +6,9 @@ import fetch from 'isomorphic-fetch';
 import NavBar from '../NavBar.jsx';
 
 const BillSummary = () => {
-  const currentBill = useSelector((state) => state.bill);
+  const currentBill = useSelector((state) => state.receipt);
   const currentBillSummary = useSelector(
-    (state) => state.billSummary.billSummary
+    (state) => state.split.billSummary
   );
 
   const summary = calculateSummary(currentBill);

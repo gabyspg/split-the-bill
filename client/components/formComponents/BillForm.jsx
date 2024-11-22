@@ -5,10 +5,10 @@ import AddItem from './AddItem.jsx';
 import InfoInput from './InfoInput.jsx';
 import NavBar from '../NavBar.jsx';
 import { useNavigate } from 'react-router-dom';
-import { updateBill } from '../../slices/billSlice.js';
+import { updateReceipt } from '../../slices/receiptSlice.js';
 
 const BillForm = ({ isNewBill }) => {
-  const currentBill = useSelector((state) => state.bill);
+  const currentBill = useSelector((state) => state.receipt);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -83,7 +83,7 @@ const BillForm = ({ isNewBill }) => {
     event.preventDefault();
     const ready = checkFields();
     if (ready) {
-      dispatch(updateBill({ billInfo, people, foodItems }));
+      dispatch(updateReceipt({ billInfo, people, foodItems }));
       navigate('/summary');
     } else {
       alert('Please fill out the form completely');
