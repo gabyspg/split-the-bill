@@ -72,7 +72,7 @@ const ReceiptInfoForm = () => {
       foodItems.length === 0 ||
       people.some((person) => person.name === '') ||
       foodItems.some((item) =>
-        Object.values(item).some((value) => value === '')
+        Object.values(item).some((value) => value.length === 0)
       ) ||
       Object.values(billInfo).some((value) => value === '')
     ) {
