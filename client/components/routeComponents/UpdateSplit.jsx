@@ -1,7 +1,7 @@
 import React from 'react';
 import ReceiptInfoForm from '../formComponents/ReceiptInfoForm.jsx';
 
-const UpdateBill = () => {
+const UpdateSplit = () => {
   return (
     <>
       <ReceiptInfoForm />
@@ -9,4 +9,4 @@ const UpdateBill = () => {
   );
 };
 
-export default UpdateBill;
+export default UpdateSplit;

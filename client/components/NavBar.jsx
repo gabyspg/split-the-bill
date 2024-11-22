@@ -40,14 +40,14 @@ function ResponsiveAppBar() {
             </Button>
             <Button
               component={Link}
-              to="/createBill"
+              to="/createSplit"
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
               New Split
             </Button>
             <Button
               component={Link}
-              to="/pastBills"
+              to="/pastSplits"
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
               Past Splits

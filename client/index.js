@@ -1,10 +1,10 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './components/App.jsx';
-import CreateBill from './components/routeComponents/CreateBill.jsx';
+import CreateSplit from './components/routeComponents/CreateSplit.jsx';
+import UpdateSplit from './components/routeComponents/UpdateSplit.jsx';
 import SplitSummary from './components/routeComponents/SplitSummary.jsx';
-import PastBills from './components/routeComponents/PastBills.jsx';
-import UpdateBill from './components/routeComponents/UpdateBill.jsx';
+import PastSplits from './components/routeComponents/PastSplits.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { store } from './store';
 import { Provider } from 'react-redux';
@@ -16,24 +16,20 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: '/createBill',
-    element: <CreateBill />,
+    path: '/createSplit',
+    element: <CreateSplit />,
   },
   {
-    path: '/summary',
+    path: '/splitSummary',
     element: <SplitSummary />,
   },
   {
-    path: '/pastBills',
-    element: <PastBills />,
+    path: '/pastSplits',
+    element: <PastSplits />,
   },
   {
-    path: '/reviewBill',
-    element: <SplitSummary />,
-  },
-  {
-    path: '/updateBill',
-    element: <UpdateBill />,
+    path: '/updateSplit',
+    element: <UpdateSplit />,
   },
 ]);
 

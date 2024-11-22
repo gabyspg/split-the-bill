@@ -5,7 +5,7 @@ import { resetReceipt } from '../../slices/receiptSlice.js';
 import { resetSplitSummary } from '../../slices/splitSlice.js';
 import { resetSplitHistory } from '../../slices/historySlice.js';
 
-const CreateBill = () => {
+const CreateSplit = () => {
   const resetStoreData = () => {
     const dispatch = useDispatch();
     dispatch(resetReceipt());
@@ -22,4 +22,4 @@ const CreateBill = () => {
   );
 };
 
-export default CreateBill;
+export default CreateSplit;

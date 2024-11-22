@@ -8,7 +8,7 @@ import NavBar from '../NavBar.jsx';
 import { resetReceipt } from '../../slices/receiptSlice.js';
 import { updateSplitHistory } from '../../slices/historySlice.js';
 
-const PastBills = () => {
+const PastSplits = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -19,7 +19,7 @@ const PastBills = () => {
     dispatch(updateSplitSummary({ billSummary: receipts[id] }));
     dispatch(resetReceipt());
     dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
-    navigate('/reviewBill');
+    navigate('/splitSummary');
   };
 
   const seeReceipts = () => {
@@ -59,4 +59,4 @@ const PastBills = () => {
     </>
   );
 };
-export default PastBills;
+export default PastSplits;

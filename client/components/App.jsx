@@ -15,10 +15,10 @@ const App = () => {
           Bill, the process becomes seamless.
         </p>
         <p>Please choose from the following options:</p>
-        <button className="submit" onClick={() => navigate('/createBill')}>
+        <button className="submit" onClick={() => navigate('/createSplit')}>
           New Split
         </button>
-        <button className="submit" onClick={() => navigate('/pastBills')}>
+        <button className="submit" onClick={() => navigate('/pastSplits')}>
           Review Past Splits
         </button>
       </div>

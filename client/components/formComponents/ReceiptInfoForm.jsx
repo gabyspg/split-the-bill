@@ -89,7 +89,7 @@ const ReceiptInfoForm = () => {
       if (!isNewSplit) {
         dispatch(updateSplitHistory({ isNewSplit, isEdited: true }));
       }
-      navigate('/summary');
+      navigate('/splitSummary');
     } else {
       alert('Please fill out the form completely');
     }
