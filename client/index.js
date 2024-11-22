@@ -1,15 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-
 import App from './components/App.jsx';
 import CreateBill from './components/routeComponents/CreateBill.jsx';
-import BillSummary from './components/routeComponents/BillSummary.jsx';
+import SplitSummary from './components/routeComponents/SplitSummary.jsx';
 import PastBills from './components/routeComponents/PastBills.jsx';
-import ReviewBill from './components/routeComponents/ReviewBill.jsx';
 import UpdateBill from './components/routeComponents/UpdateBill.jsx';
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
 import { store } from './store';
 import { Provider } from 'react-redux';
 import styles from './scss/_app.scss';
@@ -25,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/summary',
-    element: <BillSummary />,
+    element: <SplitSummary />,
   },
   {
     path: '/pastBills',
@@ -33,7 +29,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/reviewBill',
-    element: <ReviewBill />,
+    element: <SplitSummary />,
   },
   {
     path: '/updateBill',

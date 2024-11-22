@@ -5,6 +5,8 @@ import ReceiptDisplay from '../receiptComponents/ReceiptDisplay.jsx';
 import fetch from 'isomorphic-fetch';
 import { updateSplitSummary } from '../../slices/splitSlice.js';
 import NavBar from '../NavBar.jsx';
+import { resetReceipt } from '../../slices/receiptSlice.js';
+import { updateSplitHistory } from '../../slices/historySlice.js';
 
 const PastBills = () => {
   const dispatch = useDispatch();
@@ -15,6 +17,8 @@ const PastBills = () => {
   const reviewReceipt = (event, id) => {
     event.preventDefault();
     dispatch(updateSplitSummary({ billSummary: receipts[id] }));
+    dispatch(resetReceipt());
+    dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
     navigate('/reviewBill');
   };
 

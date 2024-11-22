@@ -20,7 +20,7 @@ app.get('/api/getReceipts', receiptController.getReceipts, (req, res) => {
 });
 
 app.post('/api/saveSummary', receiptController.saveSummary, (req, res) => {
-  return res.status(200).json(req.body);
+  return res.status(200).json(res.locals.summary);
 });
 
 app.put('/api/updateSummary', receiptController.updateSummary, (req, res) => {

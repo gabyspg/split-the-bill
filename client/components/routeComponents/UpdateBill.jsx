@@ -1,10 +1,10 @@
 import React from 'react';
-import BillForm from '../formComponents/BillForm.jsx';
+import ReceiptInfoForm from '../formComponents/ReceiptInfoForm.jsx';
 
 const UpdateBill = () => {
   return (
     <>
-      <BillForm isNewBill={false} />
+      <ReceiptInfoForm />
     </>
   );
 };

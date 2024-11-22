@@ -31,7 +31,7 @@ const initialState = {
 };
 
 export const splitSlice = createSlice({
-  name: 'splitSummary',
+  name: 'split',
   initialState,
   reducers: {
     updateSplitSummary: (state, action) => {

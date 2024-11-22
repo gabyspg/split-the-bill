@@ -4,7 +4,8 @@ const receiptController = {};
 receiptController.saveSummary = async (req, res, next) => {
   try {
     const summary = new Bill(req.body);
-    await summary.save();
+    const savedSummary = await summary.save();
+    res.locals.summary = savedSummary;
     return next();
   } catch (err) {
     return next({

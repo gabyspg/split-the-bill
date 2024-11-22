@@ -6,9 +6,11 @@ import InfoInput from './InfoInput.jsx';
 import NavBar from '../NavBar.jsx';
 import { useNavigate } from 'react-router-dom';
 import { updateReceipt } from '../../slices/receiptSlice.js';
+import { updateSplitHistory } from '../../slices/historySlice.js';
 
-const BillForm = ({ isNewBill }) => {
+const ReceiptInfoForm = () => {
   const currentBill = useSelector((state) => state.receipt);
+  const { isNewSplit } = useSelector((state) => state.history);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -84,6 +86,9 @@ const BillForm = ({ isNewBill }) => {
     const ready = checkFields();
     if (ready) {
       dispatch(updateReceipt({ billInfo, people, foodItems }));
+      if (!isNewSplit) {
+        dispatch(updateSplitHistory({ isNewSplit, isEdited: true }));
+      }
       navigate('/summary');
     } else {
       alert('Please fill out the form completely');
@@ -137,11 +142,11 @@ const BillForm = ({ isNewBill }) => {
           />
         </label>
         <button className="submit" onClick={(event) => submit(event)}>
-          {isNewBill ? 'Split the Bill' : 'Update Bill'}
+          {isNewSplit ? 'Split the Bill' : 'Update Split'}
         </button>
       </div>
     </>
   );
 };
 
-export default BillForm;
+export default ReceiptInfoForm;

@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import receiptReducer from './slices/receiptSlice';
-import splitSummaryReducer from './slices/splitSlice';
+import splitReducer from './slices/splitSlice';
+import historyReducer from './slices/historySlice'
 
 export const store = configureStore({
   reducer: {
     receipt: receiptReducer,
-    split: splitSummaryReducer,
+    split: splitReducer,
+    history: historyReducer,
   },
 });
