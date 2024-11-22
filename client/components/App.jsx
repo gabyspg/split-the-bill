@@ -15,7 +15,7 @@ const App = () => {
           Bill, the process becomes seamless.
         </p>
         <p>Please choose from the following options:</p>
-        <button className="submit" onClick={() => navigate('/createSplit')}>
+        <button className="submit" onClick={() => navigate('/newReceipt')}>
           New Split
         </button>
         <button className="submit" onClick={() => navigate('/pastSplits')}>

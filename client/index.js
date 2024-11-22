@@ -1,8 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './components/App.jsx';
-import CreateSplit from './components/routeComponents/CreateSplit.jsx';
-import UpdateSplit from './components/routeComponents/UpdateSplit.jsx';
+import EditReceiptInfo from './components/routeComponents/EditReceiptInfo.jsx';
 import SplitSummary from './components/routeComponents/SplitSummary.jsx';
 import PastSplits from './components/routeComponents/PastSplits.jsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -16,12 +15,12 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: '/createSplit',
-    element: <CreateSplit />,
+    path: '/newReceipt',
+    element: <EditReceiptInfo key="newReceipt" />,
   },
   {
-    path: '/updateSplit',
-    element: <UpdateSplit />,
+    path: '/updateReceipt',
+    element: <EditReceiptInfo key="updateReceipt" />,
   },
   {
     path: '/splitSummary',

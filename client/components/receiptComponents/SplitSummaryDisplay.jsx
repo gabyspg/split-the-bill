@@ -42,7 +42,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
     event.preventDefault();
     const bill = convertSummaryToBill(summary);
     dispatch(updateReceipt(bill));
-    navigate('/updateSplit');
+    navigate('/updateReceipt');
   };
 
   const deleteSplit = (event) => {
