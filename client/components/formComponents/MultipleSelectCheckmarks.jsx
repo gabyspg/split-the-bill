@@ -17,7 +17,7 @@ const MultipleSelectCheckmarks = ({
 
   const backgroundColor = '#1d2639';
   const textColor = '#d1d1d1';
-  const borderColor = '#2e3a68';
+  const borderColor = '#313a49';
 
   return (
     <div style={{ display: 'inline-flex' }}>
@@ -55,6 +55,9 @@ const MultipleSelectCheckmarks = ({
             height: '19.5px',
             backgroundColor: backgroundColor,
             color: textColor,
+            '.MuiSelect-icon': {
+              color: textColor,
+            },
           }}
           MenuProps={{
             PaperProps: {

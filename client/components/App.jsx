@@ -32,7 +32,7 @@ const App = () => {
           New Split
         </button>
         <button className="submit" onClick={() => navigate('/pastSplits')}>
-          Review Past Splits
+          Past Splits
         </button>
       </div>
     </div>

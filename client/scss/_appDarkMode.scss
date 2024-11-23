@@ -6,10 +6,10 @@ $background: #121212;
 $secondary: #1f2532;
 $primaryText: #e0e0e0;
 $primaryAccent: #3f5cb8;
-$primaryAccentBorder: #2e3a68;
+$primaryAccentBorder: #313a49;
 $inputFieldBackground: #1d2639;
 $secondaryText: #a0a0a0;
-$secondaryAccent: #d1d1d1;
+$secondaryAccent: #a6a6a6;
 $secondaryAccentBorder: #c1c1c1;
 
 // General Styles
@@ -58,7 +58,7 @@ body {
     width: 80px;
     margin-left: 10px;
     background-color: $secondaryAccent;
-    color: $primaryAccent;
+    color: $secondary;
     border: 1px solid $secondaryAccentBorder;
     font-size: 0.75em;
     padding: 1px;
@@ -88,6 +88,12 @@ body {
   display: flex;
 }
 
+.line {
+  border: none;
+  border-top: 1px solid $primaryText;
+  margin: 10px 0;
+}
+
 .overallReceipt {
   display: flex;
   flex-direction: column;
@@ -95,15 +101,12 @@ body {
   padding: 20px;
 
   .receipt {
-    background-color: $secondary;
-    color: $primaryText;
-    border: 1px solid $secondaryAccentBorder;
+    background-color: $secondaryAccent;
+    color: $secondary;
+    border: 1px solid $primaryAccentBorder;
   }
-
   .line {
-    border: none;
-    border-top: 1px solid $primaryText;
-    margin: 10px 0;
+    border-top: 1px solid $primaryAccentBorder;
   }
 }
 
@@ -116,11 +119,19 @@ body {
   padding: 20px;
   color: $primaryText;
 
-  .line {
-    border: none;
-    border-top: 1px solid $primaryText;
-    margin: 10px 0;
+  .receipt {
+    border: 1px solid $secondaryAccentBorder;
   }
+}
+
+.allPastReceipts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  color: $primaryText;
 }
 
 .receipt {
@@ -186,7 +197,7 @@ label {
 }
 
 button {
-  width: 200px;
+  width: 100px;
   font-size: 1em;
   margin-bottom: 10px;
   background-color: $primaryAccent;
@@ -196,6 +207,7 @@ button {
 }
 
 .submit {
+  width: 150px;
   margin: auto;
   margin-bottom: 5px;
   height: 30px;
@@ -214,6 +226,6 @@ button {
 
 .delete {
   background-color: $secondaryAccent;
-  color: $primaryAccent;
+  color: $secondary;
   border: 1px solid $secondaryAccentBorder;
 }
