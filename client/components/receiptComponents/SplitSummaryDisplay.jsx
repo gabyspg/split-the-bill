@@ -151,7 +151,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
                 }
               }}
             >
-              Delete this Receipt
+              Delete
             </button>
           )}
         </div>

@@ -1,33 +1,33 @@
 @use 'sass:color';
 
 // Variables
-$primaryColor: #2c387e;
-$lightPrimaryColor: color.adjust($primaryColor, $lightness: 60%);
-$primaryBlack: rgb(28, 27, 27);
-$secondaryBlack: rgb(86, 85, 85);
-$lightGrey: lightgray;
-$superLightGrey: whitesmoke;
-$background: rgb(78, 81, 84);
-$cool: rgb(183, 211, 233);
-$whiteText: #efeff5;
+$primary: #2c387e;
+$background: #121212;
+$secondary: #1f2532;
+$primaryText: #e0e0e0;
+$primaryAccent: #3f5cb8;
+$primaryAccentBorder: #2e3a68;
+$inputBackground: #1d2639;
+$secondaryText: #a0a0a0;
+$secondaryAccent: #d1d1d1;
+$secondaryAccentBorder: #c1c1c1;
 
 // General Styles
 body {
   font-family: 'Roboto', sans-serif;
   text-align: center;
-  background-color: $primaryBlack;
+  background-color: $background;
 
   h2 {
-    color: $whiteText;
+    color: $primaryText;
   }
 }
 
 // Components
 .splitForm {
-  border: 1px solid #ccc;
-  background-color: $lightGrey;
-  color: $primaryBlack;
-  box-shadow: 2px 2px 2px 1px rgba(106, 106, 108, 0.1);
+  border: 1px solid $primaryAccentBorder;
+  background-color: $secondary;
+  color: $primaryText;
   max-width: 1000px;
   padding: 20px;
   display: flex;
@@ -41,9 +41,11 @@ body {
   }
 
   input {
+    color-scheme: dark;
     margin-left: 10px;
-    background-color: #efeeed;
-    border: 1px solid rgb(160, 160, 181);
+    background-color: $inputBackground;
+    color: $primaryText;
+    border: 1px solid $primaryAccentBorder;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -55,7 +57,9 @@ body {
   .removeEntry {
     width: 80px;
     margin-left: 10px;
-    background-color: #efeeed;
+    background-color: $secondaryAccent;
+    color: $primaryAccent;
+    border: 1px solid $secondaryAccentBorder;
     font-size: 0.75em;
     padding: 1px;
     height: 20px;
@@ -64,8 +68,8 @@ body {
   .addEntry {
     width: 100px;
     margin-left: 10px;
-    background-color: $primaryColor;
-    color: $superLightGrey;
+    background-color: $primaryAccent;
+    color: $primaryText;
     font-size: 0.8em;
     padding: 1px;
     height: 20px;
@@ -74,10 +78,14 @@ body {
   select {
     margin: 10px 0 10px 10px;
     width: 150px;
-    background-color: #efeeed;
-    color: $primaryBlack;
-    border: 1px solid $lightGrey;
+    background-color: $inputBackground;
+    color: $primaryText;
+    border: 1px solid $primaryAccentBorder;
   }
+}
+
+.divideReceipts {
+  display: flex;
 }
 
 .overallReceipt {
@@ -87,8 +95,15 @@ body {
   padding: 20px;
 
   .receipt {
-    background-color: $secondaryBlack;
-    border: 1px solid #909090;
+    background-color: $secondary;
+    color: $primaryText;
+    border: 1px solid $secondaryAccentBorder;
+  }
+
+  .line {
+    border: none;
+    border-top: 1px solid $primaryText;
+    margin: 10px 0;
   }
 }
 
@@ -99,13 +114,20 @@ body {
   align-items: flex-start;
   gap: 20px;
   padding: 20px;
+  color: $primaryText;
+
+  .line {
+    border: none;
+    border-top: 1px solid $primaryText;
+    margin: 10px 0;
+  }
 }
 
 .receipt {
   width: 300px;
   margin: 20px;
-  border: 1px solid #d2d8f6;
-  background-color: #cfd8f3;
+  border: 1px solid $primaryAccentBorder;
+  background-color: $secondary;
   padding: 20px;
 
   .receipt-header {
@@ -140,19 +162,12 @@ body {
       text-align: right;
     }
   }
-
-  .line {
-    border: none;
-    border-top: 1px solid $primaryColor;
-    margin: 10px 0;
-  }
 }
 
 .intro {
-  border: 1px solid #ccc;
-  background-color: $secondaryBlack;
-  color: $whiteText;
-  box-shadow: 2px 2px 2px 1px rgba(106, 106, 108, 0.1);
+  border: 1px solid $primaryAccentBorder;
+  background-color: $secondary;
+  color: $primaryText;
   max-width: 800px;
   padding: 20px;
   display: flex;
@@ -174,17 +189,15 @@ button {
   width: 200px;
   font-size: 1em;
   margin-bottom: 10px;
-  background-color: $lightGrey;
-  color: $primaryBlack;
-  border: 1px solid $secondaryBlack;
+  background-color: $primaryAccent;
+  color: $primaryText;
+  border: 1px solid $primaryAccentBorder;
   border-radius: 3px;
 }
 
 .submit {
   margin: auto;
   margin-bottom: 5px;
-  background-color: $primaryColor;
-  color: $superLightGrey;
   height: 30px;
   border-radius: 10px;
   font-weight: 500;
@@ -193,9 +206,14 @@ button {
 .review {
   margin: auto;
   margin-top: 10px;
-  background-color: $primaryColor;
   color: #dadde5;
   height: 25px;
   width: 100px;
   border-radius: 5px;
+}
+
+.delete {
+  background-color: $secondaryAccent;
+  color: $primaryAccent;
+  border: 1px solid $secondaryAccentBorder;
 }

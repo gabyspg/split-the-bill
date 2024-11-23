@@ -1,3 +1,4 @@
+@use 'sass:color';
 $primaryColor: #2c387e;
 $lightPrimaryColor: color.adjust($primaryColor, $lightness: 60%);
 $primaryBlack: rgb(28, 27, 27);
