@@ -11,24 +11,24 @@ const receiptController = require('./controllers/receiptController.js');
 
 app.use(express.static(path.join(__dirname, '../build')));
 
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
 });
 
-app.get('/getReceipts', receiptController.getReceipts, (req, res) => {
+app.get('/api/getReceipts', receiptController.getReceipts, (req, res) => {
   return res.status(200).json(res.locals.found);
 });
 
-app.post('/saveSummary', receiptController.saveSummary, (req, res) => {
+app.post('/api/saveSummary', receiptController.saveSummary, (req, res) => {
   return res.status(200).json(res.locals.summary);
 });
 
-app.put('/updateSummary', receiptController.updateSummary, (req, res) => {
+app.put('/api/updateSummary', receiptController.updateSummary, (req, res) => {
   return res.status(200).json(res.locals.newSummary);
 });
 
 app.delete(
-  '/deleteReceipt/:id',
+  '/api/deleteReceipt/:id',
   receiptController.deleteReceipt,
   (req, res) => {
     return res.status(200).json(res.locals.deleted);

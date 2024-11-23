@@ -7,7 +7,7 @@ $secondary: #1f2532;
 $primaryText: #e0e0e0;
 $primaryAccent: #3f5cb8;
 $primaryAccentBorder: #2e3a68;
-$inputBackground: #1d2639;
+$inputFieldBackground: #1d2639;
 $secondaryText: #a0a0a0;
 $secondaryAccent: #d1d1d1;
 $secondaryAccentBorder: #c1c1c1;
@@ -43,7 +43,7 @@ body {
   input {
     color-scheme: dark;
     margin-left: 10px;
-    background-color: $inputBackground;
+    background-color: $inputFieldBackground;
     color: $primaryText;
     border: 1px solid $primaryAccentBorder;
 
@@ -78,7 +78,7 @@ body {
   select {
     margin: 10px 0 10px 10px;
     width: 150px;
-    background-color: $inputBackground;
+    background-color: $inputFieldBackground;
     color: $primaryText;
     border: 1px solid $primaryAccentBorder;
   }
@@ -206,7 +206,7 @@ button {
 .review {
   margin: auto;
   margin-top: 10px;
-  color: #dadde5;
+  color: $primaryText;
   height: 25px;
   width: 100px;
   border-radius: 5px;

@@ -29,7 +29,7 @@ const PastSplits = () => {
       headers: { 'Content-Type': 'application/json' },
     };
 
-    fetch('/getReceipts', getReceiptsRequest)
+    fetch('/api/getReceipts', getReceiptsRequest)
       .then((res) => res.json())
       .then((data) => {
         setReceipts(data);
