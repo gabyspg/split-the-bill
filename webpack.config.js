@@ -9,6 +9,11 @@ module.exports = {
     path: path.resolve(__dirname, './build'),
     publicPath: '/',
   },
+  resolve: {
+    alias: {
+      '@emotion/react': require.resolve('@emotion/react'),
+    },
+  },
   module: {
     rules: [
       {
@@ -21,7 +26,16 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              api: 'modern',
+            },
+          },
+        ],
       },
     ],
   },

@@ -7,7 +7,7 @@ import PastSplits from './components/routeComponents/PastSplits.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { store } from './store';
 import { Provider } from 'react-redux';
-import styles from './scss/_app.scss';
+import styles from './scss/_appDarkMode.scss';
 import ScrollToTop from './utils/ScrollToTop.js';
 
 const routes = [
@@ -20,7 +20,9 @@ const routes = [
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter
+      future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+    >
       <ScrollToTop />
       <Routes>
         {routes.map(({ path, element }) => (

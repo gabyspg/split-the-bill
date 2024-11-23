@@ -1,3 +1,6 @@
+@use 'sass:color';
+
+// Variables
 $primaryColor: #2c387e;
 $lightPrimaryColor: color.adjust($primaryColor, $lightness: 60%);
 $primaryBlack: rgb(28, 27, 27);
@@ -6,16 +9,20 @@ $lightGrey: lightgray;
 $superLightGrey: whitesmoke;
 $background: rgb(78, 81, 84);
 $cool: rgb(183, 211, 233);
+$whiteText: #efeff5;
 
+// General Styles
 body {
   font-family: 'Roboto', sans-serif;
   text-align: center;
-  background-color: #efeff5;
+  background-color: $primaryBlack;
+
   h2 {
-    color: $primaryBlack;
+    color: $whiteText;
   }
 }
 
+// Components
 .splitForm {
   border: 1px solid #ccc;
   background-color: $lightGrey;
@@ -33,16 +40,16 @@ body {
     margin-top: 20px;
   }
 
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
   input {
     margin-left: 10px;
     background-color: #efeeed;
     border: 1px solid rgb(160, 160, 181);
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
 
   .removeEntry {
@@ -65,8 +72,7 @@ body {
   }
 
   select {
-    margin-left: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0 10px 10px;
     width: 150px;
     background-color: #efeeed;
     color: $primaryBlack;
@@ -77,18 +83,13 @@ body {
 .overallReceipt {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
   padding: 20px;
 
   .receipt {
-    background-color: $lightGrey;
+    background-color: $secondaryBlack;
     border: 1px solid #909090;
   }
-}
-
-.divideReceipts {
-  display: flex;
 }
 
 .allReceipts {
@@ -98,12 +99,6 @@ body {
   align-items: flex-start;
   gap: 20px;
   padding: 20px;
-}
-
-.billInfo {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5px;
 }
 
 .receipt {
@@ -116,8 +111,9 @@ body {
   .receipt-header {
     text-align: center;
     margin-bottom: 20px;
+
     h3 {
-      margin: 0px;
+      margin: 0;
     }
   }
 
@@ -126,23 +122,25 @@ body {
     display: flex;
     justify-content: space-between;
     margin-bottom: 5px;
+
+    .item-name,
+    .summary-name {
+      flex: 1;
+      text-align: left;
+    }
+
+    .item-quantity {
+      flex-basis: 15%;
+      text-align: left;
+    }
+
+    .item-price,
+    .summary-price {
+      flex-basis: 40%;
+      text-align: right;
+    }
   }
 
-  .item-name,
-  .summary-name {
-    flex: 1;
-    text-align: left;
-  }
-
-  .item-quantity {
-    flex-basis: 15%;
-    text-align: left;
-  }
-  .item-price,
-  .summary-price {
-    flex-basis: 40%;
-    text-align: right;
-  }
   .line {
     border: none;
     border-top: 1px solid $primaryColor;
@@ -152,17 +150,17 @@ body {
 
 .intro {
   border: 1px solid #ccc;
-  background-color: $lightGrey;
-  color: #262c3d;
+  background-color: $secondaryBlack;
+  color: $whiteText;
   box-shadow: 2px 2px 2px 1px rgba(106, 106, 108, 0.1);
   max-width: 800px;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  margin: auto;
-  margin-top: 20px;
+  margin: 20px auto 0;
   text-align: center;
   border-radius: 10px;
+
   p {
     font-size: large;
   }
