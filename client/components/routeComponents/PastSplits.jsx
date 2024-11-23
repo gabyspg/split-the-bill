@@ -54,7 +54,7 @@ const PastSplits = () => {
   return (
     <>
       <NavBar />
-      <h2>Split: Past Bills</h2>
+      <h2>Past Splits</h2>
       <div className="allPastReceipts">{renderReceipt}</div>
     </>
   );
