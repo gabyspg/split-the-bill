@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "concurrently \"nodemon server/server.js\" \"NODE_ENV=development webpack serve --open\""
+    "dev": "concurrently \"nodemon server/server.js\" \"cross-env NODE_ENV=development webpack serve --open\""
   },
   "author": "Gabriela Pleitez Gomez",
   "license": "ISC",
@@ -35,6 +35,7 @@
     "@babel/preset-react": "^7.22.15",
     "babel-loader": "^9.1.3",
     "concurrently": "^8.2.1",
+    "cross-env": "^7.0.3",
     "css": "^3.0.0",
     "css-loader": "^6.8.1",
     "html-webpack-plugin": "^5.5.3",
