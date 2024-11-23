@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "build": "NODE_ENV=production webpack",
+    "build": "cross-env NODE_ENV=production webpack",
     "dev": "concurrently \"nodemon server/server.js\" \"cross-env NODE_ENV=development webpack serve --open\""
   },
   "author": "Gabriela Pleitez Gomez",
