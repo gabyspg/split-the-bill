@@ -9,7 +9,7 @@ app.use(cors());
 
 const receiptController = require('./controllers/receiptController.js');
 
-app.use('/build', express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.get('/api', (req, res) => {
   return res.status(200).sendFile(path.join(__dirname, '../index.html'));
