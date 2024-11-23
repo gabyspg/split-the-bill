@@ -53,7 +53,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       headers: { 'Content-Type': 'application/json' },
     };
 
-    fetch(`/api/deleteReceipt/${id}`, deleteReceiptRequest)
+    fetch(`/deleteReceipt/${id}`, deleteReceiptRequest)
       .then((res) => res.json())
       .then((data) => {
         if (!data) {
@@ -78,7 +78,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       body: JSON.stringify(summary),
     };
 
-    fetch('/api/saveSummary', saveSummaryRequest)
+    fetch('/saveSummary', saveSummaryRequest)
       .then((res) => res.json())
       .then((data) => {
         if (data) {
@@ -100,7 +100,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       body: JSON.stringify({ id: id, update: summary }),
     };
 
-    fetch('/api/updateSummary', updateSummaryRequest)
+    fetch('/updateSummary', updateSummaryRequest)
       .then((res) => res.json())
       .then((data) => {
         if (!data) {
