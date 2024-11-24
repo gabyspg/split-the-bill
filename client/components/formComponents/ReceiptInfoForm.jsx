@@ -26,9 +26,25 @@ const ReceiptInfoForm = () => {
   };
 
   const handlePersonChange = (index, event) => {
-    let data = JSON.parse(JSON.stringify(people));
-    data[index][event.target.name] = event.target.value;
-    setPeople(data);
+    let peopleData = JSON.parse(JSON.stringify(people));
+    let itemsData = JSON.parse(JSON.stringify(foodItems));
+
+    const previousPerson = peopleData[index][event.target.name];
+    const newPerson = event.target.value;
+
+    const updatedItemsPeopleData = itemsData.map((item) => {
+      const selectedSet = new Set(item.people);
+      if (selectedSet.has(previousPerson)) {
+        selectedSet.delete(previousPerson);
+        selectedSet.add(newPerson);
+      }
+      item.people = [...selectedSet];
+      return item;
+    });
+
+    peopleData[index][event.target.name] = event.target.value;
+    setPeople(peopleData);
+    setFoodItems(updatedItemsPeopleData);
   };
 
   const handleFoodChange = (index, event) => {
@@ -50,9 +66,21 @@ const ReceiptInfoForm = () => {
   };
 
   const removePerson = (index) => {
-    let data = JSON.parse(JSON.stringify(people));
-    data.splice(index, 1);
-    setPeople(data);
+    let peopleData = JSON.parse(JSON.stringify(people));
+    let itemsData = JSON.parse(JSON.stringify(foodItems));
+
+    const removedPerson = peopleData[index].name;
+    const updatedItemsPeopleData = itemsData.map((item) => {
+      const updateSelectedPeople = item.people.filter((person) => {
+        return person !== removedPerson;
+      });
+      item.people = updateSelectedPeople;
+      return item;
+    });
+
+    peopleData.splice(index, 1);
+    setPeople(peopleData);
+    setFoodItems(updatedItemsPeopleData);
   };
 
   const addItem = () => {
