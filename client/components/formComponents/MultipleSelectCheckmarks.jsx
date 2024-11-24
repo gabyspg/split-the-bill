@@ -11,9 +11,10 @@ const MultipleSelectCheckmarks = ({
   index,
   peopleSelect,
 }) => {
-  const names = peopleInputFields.map((person) => {
+  const peopleNames = peopleInputFields.map((person) => {
     return person.name;
   });
+  const names = [...new Set(peopleNames)];
 
   const backgroundColor = '#1d2639';
   const textColor = '#d1d1d1';

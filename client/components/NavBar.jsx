@@ -27,14 +27,13 @@ function ResponsiveAppBar() {
     <AppBar position="static" sx={{ backgroundColor: '#2c387e' }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <ReceiptIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <ReceiptIcon sx={{ mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
             component="a"
             sx={{
               mr: 2,
-              display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
@@ -44,7 +43,7 @@ function ResponsiveAppBar() {
           >
             Split
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: 'flex' }}>
             <Button
               component={Link}
               to="/"
