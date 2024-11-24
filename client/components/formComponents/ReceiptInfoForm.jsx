@@ -110,7 +110,7 @@ const ReceiptInfoForm = () => {
           removePerson={removePerson}
         />
         <button className="addEntry" onClick={addPerson}>
-          Add person
+          Add
         </button>
         <AddItem
           peopleInputFields={people}
@@ -119,7 +119,7 @@ const ReceiptInfoForm = () => {
           removeFoodItem={removeItem}
         />
         <button className="addEntry" onClick={addItem}>
-          Add item
+          Add
         </button>
         <label className="form-group">
           Tax ($):
@@ -142,7 +142,7 @@ const ReceiptInfoForm = () => {
           />
         </label>
         <button className="submit" onClick={(event) => submit(event)}>
-          {isNewSplit ? 'Split the Bill' : 'Update Split'}
+          {isNewSplit ? 'Split' : 'Update Split'}
         </button>
       </div>
     </>

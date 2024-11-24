@@ -159,19 +159,33 @@ body {
 
     .item-name,
     .summary-name {
-      flex: 1;
+      width: 40%;
       text-align: left;
+      overflow: hidden;
     }
 
     .item-quantity {
-      flex-basis: 15%;
+      width: 15%;
       text-align: left;
+      overflow: hidden;
     }
 
-    .item-price,
-    .summary-price {
-      flex-basis: 40%;
+    .item-price {
+      width: 20%;
       text-align: right;
+      overflow: hidden;
+    }
+
+    .item-amount {
+      width: 25%;
+      text-align: right;
+      overflow: hidden;
+    }
+
+    .summary-price {
+      width: 60%;
+      text-align: right;
+      overflow: hidden;
     }
   }
 }

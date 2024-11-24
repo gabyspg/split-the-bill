@@ -11,12 +11,12 @@ const AddItem = (props) => {
 
   return (
     <>
-      <label className="form-group">Food Items:</label>
+      <label className="form-group">Items:</label>
       {foodInputFields.map((foodItem, index) => {
         return (
           <li key={index}>
             <label key={index}>
-              Food item {index + 1}:
+              Item {index + 1}:
               <input
                 name="itemName"
                 placeholder="Item name"

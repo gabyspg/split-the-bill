@@ -12,7 +12,8 @@ const ItemRow = (props) => {
     <div className="item-row">
       <span className="item-quantity">{quantity}</span>
       <span className="item-name">{name}</span>
-      <span className="item-price">${price}</span>
+      <span className="item-price">{price}</span>
+      <span className="item-amount">{Number(price * quantity).toFixed(2)}</span>
     </div>
   );
 };

@@ -32,16 +32,17 @@ const PersonReceipt = (props) => {
               <span className="item-quantity">#</span>
               <span className="item-name">Items</span>
               <span className="item-price">Price</span>
+              <span className="item-amount">Amount</span>
             </div>
-            <hr className="line"></hr>
+            <hr className="line" />
             {itemsList}
           </div>
-          <hr className="line"></hr>
+          <hr className="line" />
           <div className="receipt-summary">
             <SummaryRow name={'Subtotal'} price={subtotal} />
             <SummaryRow name={'Tax'} price={tax} />
             <SummaryRow name={'Tip'} price={tip} />
-            <hr className="line"></hr>
+            <hr className="line" />
             <SummaryRow name={'Total'} price={total} />
           </div>
         </>
