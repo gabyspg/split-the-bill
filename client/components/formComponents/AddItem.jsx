@@ -22,58 +22,51 @@ const AddItem = (props) => {
       >
         {foodInputFields.map((foodItem, index) => {
           return (
-            <div style={{ display: 'inline' }}>
-              <Box
-                component="form"
-                sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
-                noValidate
-                autoComplete="off"
+            <div key={index} style={{ display: 'inline' }}>
+              <TextField
+                id="outlined-controlled"
+                label={`Item ${index + 1}`}
+                name="itemName"
+                value={foodItem.itemName}
+                onChange={(event) => handleFoodChange(index, event)}
+                size="small"
+                variant="outlined"
+              />
+              <TextField
+                id="outlined-controlled"
+                label={'Price'}
+                name="price"
+                type="number"
+                value={foodItem.price}
+                onChange={(event) => handleFoodChange(index, event)}
+                size="small"
+                variant="outlined"
+              />
+              <TextField
+                id="outlined-controlled"
+                label={'Quantity'}
+                name="quantity"
+                type="number"
+                value={foodItem.quantity}
+                onChange={(event) => handleFoodChange(index, event)}
+                size="small"
+                variant="outlined"
+              />
+              <MultipleSelectCheckmarks
+                peopleInputFields={peopleInputFields}
+                peopleSelect={foodItem.people}
+                handleFoodChange={handleFoodChange}
+                index={index}
+              />
+              <button
+                className="removeEntry"
+                onClick={(e) => {
+                  e.preventDefault();
+                  removeFoodItem(index);
+                }}
               >
-                <TextField
-                  id="outlined-controlled"
-                  label={`Item ${index + 1}`}
-                  name="itemName"
-                  value={foodItem.itemName}
-                  onChange={(event) => handleFoodChange(index, event)}
-                  size="small"
-                  variant="outlined"
-                />
-                <TextField
-                  id="outlined-controlled"
-                  label={'Price'}
-                  name="price"
-                  type="number"
-                  value={foodItem.price}
-                  onChange={(event) => handleFoodChange(index, event)}
-                  size="small"
-                  variant="outlined"
-                />
-                <TextField
-                  id="outlined-controlled"
-                  label={'Quantity'}
-                  name="quantity"
-                  type="number"
-                  value={foodItem.quantity}
-                  onChange={(event) => handleFoodChange(index, event)}
-                  size="small"
-                  variant="outlined"
-                />
-                <MultipleSelectCheckmarks
-                  peopleInputFields={peopleInputFields}
-                  peopleSelect={foodItem.people}
-                  handleFoodChange={handleFoodChange}
-                  index={index}
-                />
-                <button
-                  className="removeEntry"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    removeFoodItem(index);
-                  }}
-                >
-                  Remove
-                </button>
-              </Box>
+                Remove
+              </button>
             </div>
           );
         })}

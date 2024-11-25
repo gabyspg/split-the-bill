@@ -25,7 +25,7 @@ const MultipleSelectCheckmarks = ({
       <FormControl
         sx={{
           m: 1,
-          width: '170px',
+          //width: '170px',
           backgroundColor: backgroundColor,
           color: textColor,
           border: `1px solid ${borderColor}`,
@@ -35,6 +35,7 @@ const MultipleSelectCheckmarks = ({
         <Select
           id="multiple-checkbox"
           multiple
+          size="small"
           name="people"
           value={peopleSelect}
           displayEmpty

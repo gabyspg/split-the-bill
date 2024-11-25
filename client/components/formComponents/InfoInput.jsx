@@ -40,6 +40,7 @@ const InfoInput = ({ billInfo, handleInfoChange, handleDateChange }) => {
         />
         <DatePicker
           label="Date"
+          size="small"
           value={dayjs(date)}
           onChange={(newDate) => {
             handleDateChange(newDate);

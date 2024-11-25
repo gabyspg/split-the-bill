@@ -16,7 +16,7 @@ const AddPerson = (props) => {
       >
         {peopleInputFields.map((person, index) => {
           return (
-            <div style={{ display: 'inline' }}>
+            <div key={index} style={{ display: 'inline' }}>
               <TextField
                 id="outlined-controlled"
                 label={`Person ${index + 1}`}
