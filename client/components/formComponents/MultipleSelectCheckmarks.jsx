@@ -21,7 +21,7 @@ const MultipleSelectCheckmarks = ({
   const borderColor = '#313a49';
 
   return (
-    <div style={{ display: 'inline-flex' }}>
+    <div style={{ display: 'inline' }}>
       <FormControl
         sx={{
           m: 1,
@@ -45,15 +45,15 @@ const MultipleSelectCheckmarks = ({
             }
             return selected.join(', ');
           }}
-          SelectDisplayProps={{
-            style: {
-              fontSize: '12px',
-              lineHeight: '19.5px',
-              padding: '4px',
-            },
-          }}
+          // SelectDisplayProps={{
+          //   style: {
+          //     fontSize: '12px',
+          //     lineHeight: '19.5px',
+          //     padding: '4px',
+          //   },
+          // }}
           sx={{
-            height: '19.5px',
+            // height: '19.5px',
             backgroundColor: backgroundColor,
             color: textColor,
             '.MuiSelect-icon': {
@@ -75,10 +75,10 @@ const MultipleSelectCheckmarks = ({
                 key={name}
                 value={name}
                 sx={{
-                  fontSize: '12px',
-                  lineHeight: '19.5px',
-                  padding: '4px',
-                  height: '19.5px',
+                  // fontSize: '12px',
+                  // lineHeight: '19.5px',
+                  // padding: '4px',
+                  // height: '19.5px',
                   backgroundColor: backgroundColor,
                   color: textColor,
                 }}
@@ -86,7 +86,7 @@ const MultipleSelectCheckmarks = ({
                 <Checkbox
                   checked={peopleSelect.includes(name)}
                   sx={{
-                    padding: '0 4px',
+                    // padding: '0 4px',
                     color: textColor,
                   }}
                 />
@@ -94,7 +94,7 @@ const MultipleSelectCheckmarks = ({
                   primary={name}
                   disableTypography={true}
                   sx={{
-                    fontSize: '12px',
+                    // fontSize: '12px',
                     textAlign: 'left',
                   }}
                 />

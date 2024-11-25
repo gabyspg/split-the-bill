@@ -117,7 +117,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
 
   return (
     <>
-      <h2>Receipt Summary</h2>
+      <h2>{summary.billName}</h2>
       <button className="submit" onClick={(event) => editSplit(event)}>
         Edit
       </button>
@@ -134,7 +134,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       <div className="divideReceipts">
         <div className="overallReceipt">
           <PersonReceipt
-            person={summary.billName}
+            person={summary.restaurant}
             personSummary={overallSummary}
             key={`overallReceipt`}
           />

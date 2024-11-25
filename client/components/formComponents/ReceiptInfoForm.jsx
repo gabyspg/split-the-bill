@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AddPerson from './AddPerson.jsx';
 import AddItem from './AddItem.jsx';
 import InfoInput from './InfoInput.jsx';
+import TaxTipInput from './TaxTipInput.jsx';
 import NavBar from '../NavBar.jsx';
 import { useNavigate } from 'react-router-dom';
 import { updateReceipt } from '../../slices/receiptSlice.js';
@@ -22,6 +23,12 @@ const ReceiptInfoForm = () => {
   const handleInfoChange = (event) => {
     let data = JSON.parse(JSON.stringify(billInfo));
     data[event.target.name] = event.target.value;
+    setBillInfo(data);
+  };
+
+  const handleDateChange = (newDate) => {
+    let data = JSON.parse(JSON.stringify(billInfo));
+    data.date = new Date(newDate);
     setBillInfo(data);
   };
 
@@ -130,7 +137,8 @@ const ReceiptInfoForm = () => {
       <div className="splitForm">
         <InfoInput
           handleInfoChange={handleInfoChange}
-          billInfoFields={billInfo}
+          handleDateChange={handleDateChange}
+          billInfo={billInfo}
         />
         <AddPerson
           peopleInputFields={people}
@@ -149,26 +157,7 @@ const ReceiptInfoForm = () => {
         <button className="addEntry" onClick={addItem}>
           Add
         </button>
-        <label className="form-group">
-          Tax ($):
-          <input
-            name="tax"
-            type="number"
-            placeholder="Tax"
-            value={billInfo.tax}
-            onChange={(event) => handleInfoChange(event)}
-          />
-        </label>
-        <label className="form-group">
-          Tip ($):
-          <input
-            name="tip"
-            type="number"
-            placeholder="Tip"
-            value={billInfo.tip}
-            onChange={(event) => handleInfoChange(event)}
-          />
-        </label>
+        <TaxTipInput handleInfoChange={handleInfoChange} billInfo={billInfo} />
         <button className="submit" onClick={(event) => submit(event)}>
           {isNewSplit ? 'Split' : 'Update Split'}
         </button>

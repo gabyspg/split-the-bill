@@ -9,6 +9,8 @@ import { store } from './store';
 import { Provider } from 'react-redux';
 import styles from './scss/_appDarkMode.scss';
 import ScrollToTop from './utils/ScrollToTop.js';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 const routes = [
   { path: '/', element: <App /> },
@@ -20,15 +22,17 @@ const routes = [
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <BrowserRouter
-      future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
-    >
-      <ScrollToTop />
-      <Routes>
-        {routes.map(({ path, element }) => (
-          <Route key={path} path={path} element={element} />
-        ))}
-      </Routes>
-    </BrowserRouter>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <BrowserRouter
+        future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+      >
+        <ScrollToTop />
+        <Routes>
+          {routes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
+          ))}
+        </Routes>
+      </BrowserRouter>
+    </LocalizationProvider>
   </Provider>
 );

@@ -28,7 +28,7 @@ body {
   border: 1px solid $primaryAccentBorder;
   background-color: $secondary;
   color: $primaryText;
-  max-width: 1000px;
+  max-width: 75%;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -42,7 +42,7 @@ body {
 
   input {
     color-scheme: dark;
-    margin-left: 10px;
+    //margin-left: 10px;
     background-color: $inputFieldBackground;
     color: $primaryText;
     border: 1px solid $primaryAccentBorder;
@@ -52,6 +52,12 @@ body {
       -webkit-appearance: none;
       margin: 0;
     }
+  }
+
+  input#outlined-controlled {
+    //box-sizing: border-box;
+    margin-left: 0;
+    color: $primaryText;
   }
 
   .removeEntry {

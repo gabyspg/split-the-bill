@@ -1,38 +1,52 @@
 import React from 'react';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import dayjs from 'dayjs';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
-const InfoInput = (props) => {
-  const { billInfoFields, handleInfoChange } = props;
+const InfoInput = ({ billInfo, handleInfoChange, handleDateChange }) => {
+  const { billName, restaurant, date } = billInfo;
 
   return (
     <>
-      <label>
-        Bill Name:
-        <input
+      <label className="form-group">Receipt Information</label>
+      <Box
+        component="form"
+        sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
+        noValidate
+        autoComplete="off"
+      >
+        <TextField
+          id="outlined-controlled"
+          label="Bill Name"
           name="billName"
-          placeholder="Bill Name"
-          value={billInfoFields.billName}
-          onChange={(event) => handleInfoChange(event)}
+          value={billName}
+          onChange={(event) => {
+            handleInfoChange(event);
+          }}
+          size="small"
+          variant="outlined"
         />
-      </label>
-      <label className="form-group">
-        Restaurant Name:
-        <input
+        <TextField
+          id="outlined-controlled"
+          label="Restaurant"
           name="restaurant"
-          placeholder="Restaurant"
-          value={billInfoFields.restaurant}
-          onChange={(event) => handleInfoChange(event)}
+          value={restaurant}
+          onChange={(event) => {
+            handleInfoChange(event);
+          }}
+          size="small"
+          variant="outlined"
         />
-      </label>
-      <label className="form-group">
-        Date (mm/dd/yyyy):
-        <input
-          name="date"
-          type="date"
-          placeholder="Date"
-          value={billInfoFields.date}
-          onChange={(event) => handleInfoChange(event)}
+        <DatePicker
+          label="Date"
+          value={dayjs(date)}
+          onChange={(newDate) => {
+            handleDateChange(newDate);
+          }}
+          views={['year', 'month', 'day']}
         />
-      </label>
+      </Box>
     </>
   );
 };
