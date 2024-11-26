@@ -36,28 +36,15 @@ body {
   text-align: left;
   border-radius: 10px;
 
-  .form-group {
-    margin-top: 20px;
-  }
-
   input {
     color-scheme: dark;
-    //margin-left: 10px;
-    background-color: $inputFieldBackground;
     color: $primaryText;
-    border: 1px solid $primaryAccentBorder;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
     }
-  }
-
-  input#outlined-controlled {
-    //box-sizing: border-box;
-    margin-left: 0;
-    color: $primaryText;
   }
 
   .removeEntry {
@@ -79,14 +66,6 @@ body {
     font-size: 0.8em;
     padding: 1px;
     height: 20px;
-  }
-
-  select {
-    margin: 10px 0 10px 10px;
-    width: 150px;
-    background-color: $inputFieldBackground;
-    color: $primaryText;
-    border: 1px solid $primaryAccentBorder;
   }
 }
 

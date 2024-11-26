@@ -12,7 +12,7 @@ const InfoInput = ({ billInfo, handleInfoChange, handleDateChange }) => {
       <label className="form-group">Receipt Information</label>
       <Box
         component="form"
-        sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
+        sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
         noValidate
         autoComplete="off"
       >
@@ -46,6 +46,11 @@ const InfoInput = ({ billInfo, handleInfoChange, handleDateChange }) => {
             handleDateChange(newDate);
           }}
           views={['year', 'month', 'day']}
+          slotProps={{
+            textField: {
+              size: 'small',
+            },
+          }}
         />
       </Box>
     </>

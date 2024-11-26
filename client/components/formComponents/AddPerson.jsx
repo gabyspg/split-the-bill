@@ -10,13 +10,13 @@ const AddPerson = (props) => {
       <label className="form-group">People</label>
       <Box
         component="form"
-        sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
+        sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
         noValidate
         autoComplete="off"
       >
         {peopleInputFields.map((person, index) => {
           return (
-            <div key={index} style={{ display: 'inline' }}>
+            <div key={index}>
               <TextField
                 id="outlined-controlled"
                 label={`Person ${index + 1}`}

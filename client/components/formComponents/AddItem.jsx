@@ -16,13 +16,13 @@ const AddItem = (props) => {
       <label className="form-group">Items</label>
       <Box
         component="form"
-        sx={{ '& > :not(style)': { m: 1, width: '25ch' } }}
+        sx={{ '& .MuiTextField-root': { m: 1, width: '25ch' } }}
         noValidate
         autoComplete="off"
       >
         {foodInputFields.map((foodItem, index) => {
           return (
-            <div key={index} style={{ display: 'inline' }}>
+            <div key={index}>
               <TextField
                 id="outlined-controlled"
                 label={`Item ${index + 1}`}
