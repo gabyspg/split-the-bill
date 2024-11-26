@@ -18,7 +18,7 @@ const InfoInput = ({ billInfo, handleInfoChange, handleDateChange }) => {
       >
         <TextField
           id="outlined-controlled"
-          label="Bill Name"
+          label="Split Name"
           name="billName"
           value={billName}
           onChange={(event) => {

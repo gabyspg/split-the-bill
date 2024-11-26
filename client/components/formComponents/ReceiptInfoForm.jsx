@@ -8,6 +8,8 @@ import NavBar from '../NavBar.jsx';
 import { useNavigate } from 'react-router-dom';
 import { updateReceipt } from '../../slices/receiptSlice.js';
 import { updateSplitHistory } from '../../slices/historySlice.js';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 const ReceiptInfoForm = () => {
   const currentBill = useSelector((state) => state.receipt);
@@ -144,23 +146,31 @@ const ReceiptInfoForm = () => {
           peopleInputFields={people}
           handlePersonChange={handlePersonChange}
           removePerson={removePerson}
+          addPerson={addPerson}
         />
-        <button className="addEntry" onClick={addPerson}>
-          Add
-        </button>
         <AddItem
           peopleInputFields={people}
           handleFoodChange={handleFoodChange}
           foodInputFields={foodItems}
           removeFoodItem={removeItem}
+          addItem={addItem}
         />
-        <button className="addEntry" onClick={addItem}>
-          Add
-        </button>
         <TaxTipInput handleInfoChange={handleInfoChange} billInfo={billInfo} />
-        <button className="submit" onClick={(event) => submit(event)}>
-          {isNewSplit ? 'Split' : 'Update Split'}
-        </button>
+        <Box
+          sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <Button
+            onClick={(event) => submit(event)}
+            variant="contained"
+            size="small"
+          >
+            {isNewSplit ? 'Split' : 'Update Split'}
+          </Button>
+        </Box>
       </div>
     </>
   );
