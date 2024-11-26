@@ -22,8 +22,6 @@ const routes = [
   { path: '/pastSplits', element: <PastSplits /> },
 ];
 
-console.log(theme);
-
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>

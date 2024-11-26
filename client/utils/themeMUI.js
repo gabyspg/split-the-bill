@@ -7,6 +7,13 @@ const secondaryText = '#a0a0a0';
 
 const theme = createTheme({
   components: {
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          color: textColor,
+        },
+      },
+    },
     MuiInputLabel: {
       styleOverrides: {
         root: {

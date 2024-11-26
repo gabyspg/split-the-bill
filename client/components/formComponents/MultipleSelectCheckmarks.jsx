@@ -39,12 +39,12 @@ const MultipleSelectCheckmarks = ({
   return (
     <>
       <FormControl size="small" sx={{ m: 1, width: 225 }}>
-        <InputLabel id="multiple-checkbox-label">Select</InputLabel>
+        <InputLabel id="multiple-checkbox-label">Select People</InputLabel>
         <Select
           labelId="multiple-checkbox-label"
           id="multiple-checkbox"
           multiple
-          input={<OutlinedInput label="Select" />}
+          input={<OutlinedInput label="Select People" />}
           name="people"
           value={peopleSelect}
           onChange={(event) => handleFoodChange(index, event)}
