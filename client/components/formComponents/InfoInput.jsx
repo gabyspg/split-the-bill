@@ -7,10 +7,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 const InfoInput = ({ billInfo, handleInfoChange, handleDateChange }) => {
   const { billName, restaurant, date } = billInfo;
 
-  const backgroundColor = '#1d2639';
-  const textColor = '#d1d1d1';
-  const borderColor = '#313a49';
-
   return (
     <>
       <label className="form-group">Receipt Information</label>

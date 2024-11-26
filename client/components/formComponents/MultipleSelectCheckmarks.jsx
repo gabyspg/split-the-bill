@@ -20,7 +20,6 @@ const MultipleSelectCheckmarks = ({
 
   const backgroundColor = '#1d2639';
   const textColor = '#d1d1d1';
-  const borderColor = '#313a49';
 
   const ITEM_HEIGHT = 48;
   const ITEM_PADDING_TOP = 8;
