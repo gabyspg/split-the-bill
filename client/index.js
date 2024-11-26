@@ -11,6 +11,8 @@ import styles from './scss/_appDarkMode.scss';
 import ScrollToTop from './utils/ScrollToTop.js';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import theme from './utils/themeMUI.js';
+import { ThemeProvider } from '@mui/material/styles';
 
 const routes = [
   { path: '/', element: <App /> },
@@ -20,19 +22,23 @@ const routes = [
   { path: '/pastSplits', element: <PastSplits /> },
 ];
 
+console.log(theme);
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <BrowserRouter
-        future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
-      >
-        <ScrollToTop />
-        <Routes>
-          {routes.map(({ path, element }) => (
-            <Route key={path} path={path} element={element} />
-          ))}
-        </Routes>
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <BrowserRouter
+          future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+        >
+          <ScrollToTop />
+          <Routes>
+            {routes.map(({ path, element }) => (
+              <Route key={path} path={path} element={element} />
+            ))}
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </LocalizationProvider>
   </Provider>
 );
