@@ -8,17 +8,24 @@ const primary = '#3f5cb8';
 
 const theme = createTheme({
   components: {
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          color: textColor,
+        },
+      },
+    },
     MuiCheckbox: {
       styleOverrides: {
         root: {
-          color: secondaryText,
+          color: textColor,
         },
       },
     },
     MuiSelect: {
       styleOverrides: {
         icon: {
-          color: secondaryText,
+          color: textColor,
         },
       },
     },
