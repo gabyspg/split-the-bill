@@ -1,4 +1,5 @@
 import React from 'react';
+import Button from '@mui/material/Button';
 
 const ReceiptDisplay = (props) => {
   const { receipt, reviewReceipt, id } = props;
@@ -18,12 +19,14 @@ const ReceiptDisplay = (props) => {
       <hr className="line"></hr>
       <p className="billInfo">Restaurant: {restaurant}</p>
       <p className="billInfo">Date: {displayDate}</p>
-      <button
+      <Button
+        onClick={(event) => reviewReceipt(event, id)}
+        variant="contained"
+        size="small"
         className="review"
-        onClick={(event, receipt) => reviewReceipt(event, id)}
       >
         Review
-      </button>
+      </Button>
     </div>
   );
 };

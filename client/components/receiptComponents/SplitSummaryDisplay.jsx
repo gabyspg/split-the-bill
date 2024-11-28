@@ -12,6 +12,8 @@ import {
   updateSplitHistory,
   resetSplitHistory,
 } from '../../slices/historySlice.js';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 
 const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
   const navigate = useNavigate();
@@ -118,19 +120,36 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
   return (
     <>
       <h2>{summary.billName}</h2>
-      <button className="submit" onClick={(event) => editSplit(event)}>
-        Edit
-      </button>
-      {isNewSplit ? (
-        <button className="submit" onClick={(event) => saveSplit(event)}>
-          Save
-        </button>
-      ) : null}
-      {!isNewSplit && isEdited ? (
-        <button className="submit" onClick={(event) => updateSplit(event)}>
-          Save Updates
-        </button>
-      ) : null}
+      <Box display="flex" justifyContent="center" alignItems="center" gap={1}>
+        <Button
+          onClick={(event) => editSplit(event)}
+          variant="contained"
+          size="small"
+          className="submit"
+        >
+          Edit
+        </Button>
+        {isNewSplit ? (
+          <Button
+            onClick={(event) => saveSplit(event)}
+            variant="contained"
+            size="small"
+            className="submit"
+          >
+            Save
+          </Button>
+        ) : null}
+        {!isNewSplit && isEdited ? (
+          <Button
+            onClick={(event) => updateSplit(event)}
+            variant="contained"
+            size="small"
+            className="submit"
+          >
+            Save Updates
+          </Button>
+        ) : null}
+      </Box>
       <div className="divideReceipts">
         <div className="overallReceipt">
           <PersonReceipt
@@ -139,8 +158,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
             key={`overallReceipt`}
           />
           {isNewSplit ? null : (
-            <button
-              className="delete"
+            <Button
               onClick={(event) => {
                 if (
                   window.confirm(
@@ -150,9 +168,12 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
                   deleteSplit(event);
                 }
               }}
+              variant="contained"
+              size="small"
+              className="delete"
             >
               Delete
-            </button>
+            </Button>
           )}
         </div>
         <div className="allReceipts">{peopleReceipts}</div>

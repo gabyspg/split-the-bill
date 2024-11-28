@@ -156,17 +156,12 @@ const ReceiptInfoForm = () => {
           addItem={addItem}
         />
         <TaxTipInput handleInfoChange={handleInfoChange} billInfo={billInfo} />
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <Box display="flex" justifyContent="center" alignItems="center">
           <Button
             onClick={(event) => submit(event)}
             variant="contained"
             size="small"
+            className="submit"
           >
             {isNewSplit ? 'Split' : 'Update Split'}
           </Button>
