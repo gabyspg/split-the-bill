@@ -184,32 +184,13 @@ label {
   font-weight: bold;
 }
 
-// button {
-//   width: 100px;
-//   font-size: 1em;
-//   margin-bottom: 10px;
-//   background-color: $primaryAccent;
-//   color: $primaryText;
-//   border: 1px solid $primaryAccentBorder;
-//   border-radius: 3px;
-// }
-
 .submit {
   width: 150px;
   height: 30px;
 }
 
-.review {
-  margin: auto;
-  margin-top: 10px;
-  color: $primaryText;
-  height: 25px;
-  width: 100px;
-  border-radius: 5px;
-}
-
+.review,
 .delete {
-  background-color: $secondaryAccent;
-  color: $secondary;
-  border: 1px solid $secondaryAccentBorder;
+  width: 100px;
+  height: 25px;
 }

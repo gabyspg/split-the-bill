@@ -14,6 +14,7 @@ import {
 } from '../../slices/historySlice.js';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
   const navigate = useNavigate();
@@ -168,9 +169,11 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
                   deleteSplit(event);
                 }
               }}
-              variant="contained"
+              variant="outlined"
+              startIcon={<DeleteIcon />}
               size="small"
               className="delete"
+              color="delete"
             >
               Delete
             </Button>
