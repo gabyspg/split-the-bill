@@ -22,6 +22,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
   const dispatch = useDispatch();
 
   const [alert, setAlert] = useState(false);
+  const [deleteAlert, setDeleteAlert] = useState(false);
   const [severity, setSeverity] = useState('success');
   const [content, setContent] = useState('');
 
@@ -46,15 +47,22 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
     items: summary.foodItems,
   };
 
-  const editSplit = (event) => {
-    event.preventDefault();
+  const editSplit = () => {
     const bill = convertSummaryToBill(summary);
     dispatch(updateReceipt(bill));
     navigate('/updateReceipt');
   };
 
-  const deleteSplit = (event) => {
-    event.preventDefault();
+  const confirmDelete = (event) => {
+    setSeverity('warning');
+    setContent(
+      'Are you sure you want to delete this split? This action cannot be undone.'
+    );
+    setAlert(false);
+    setDeleteAlert(true);
+  };
+
+  const deleteSplit = () => {
     const deleteReceiptRequest = {
       method: 'DELETE',
       credentials: 'same-origin',
@@ -76,9 +84,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       .catch((err) => console.log(err));
   };
 
-  const saveSplit = (event) => {
-    event.preventDefault();
-
+  const saveSplit = () => {
     const saveSummaryRequest = {
       method: 'POST',
       credentials: 'same-origin',
@@ -102,8 +108,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       .catch((err) => console.log(err));
   };
 
-  const updateSplit = (event) => {
-    event.preventDefault();
+  const updateSplit = () => {
     const updateSummaryRequest = {
       method: 'PUT',
       credentials: 'same-origin',
@@ -114,9 +119,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
     fetch('/api/updateSummary', updateSummaryRequest)
       .then((res) => res.json())
       .then((data) => {
-        if (!data) {
-          alert('This is a new split, please save instead of update.');
-        } else if (data) {
+        if (data) {
           dispatch(updateSplitSummary({ billSummary: data }));
           dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
 
@@ -129,8 +132,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       .catch((err) => console.log(err));
   };
 
-  const discardChanges = (event) => {
-    event.preventDefault();
+  const discardChanges = () => {
     dispatch(resetReceipt());
     dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
     navigate('/splitSummary');
@@ -142,22 +144,59 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
 
   return (
     <>
-      {alert ? (
-        <Box display="flex" justifyContent="center" alignItems="center">
+      <Box display="flex" justifyContent="center" alignItems="center">
+        {alert ? (
           <Alert
             variant="filled"
             severity={severity}
             onClose={() => setAlert(false)}
-            sx={{ width: '20%' }}
+            sx={{ width: '30%' }}
           >
             {content}
           </Alert>
-        </Box>
-      ) : null}
+        ) : null}
+        {deleteAlert ? (
+          <Alert
+            variant="filled"
+            severity={severity}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              width: '30%',
+            }}
+            action={
+              <Box
+                sx={{
+                  display: 'flex',
+                  gap: 1,
+                }}
+              >
+                <Button
+                  color="delete"
+                  size="small"
+                  variant="contained"
+                  onClick={deleteSplit}
+                >
+                  Delete
+                </Button>
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={() => setDeleteAlert(false)}
+                >
+                  Cancel
+                </Button>
+              </Box>
+            }
+          >
+            {content}
+          </Alert>
+        ) : null}
+      </Box>
       <h2>{summary.billName}</h2>
       <Box display="flex" justifyContent="center" alignItems="center" gap={1}>
         <Button
-          onClick={(event) => editSplit(event)}
+          onClick={editSplit}
           variant="contained"
           size="small"
           className="submit"
@@ -166,7 +205,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
         </Button>
         {isNewSplit ? (
           <Button
-            onClick={(event) => saveSplit(event)}
+            onClick={saveSplit}
             variant="contained"
             size="small"
             className="submit"
@@ -177,7 +216,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
         {!isNewSplit && isEdited ? (
           <>
             <Button
-              onClick={(event) => updateSplit(event)}
+              onClick={updateSplit}
               variant="contained"
               size="small"
               className="submit"
@@ -185,7 +224,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
               Save Updates
             </Button>
             <Button
-              onClick={(event) => discardChanges(event)}
+              onClick={discardChanges}
               variant="contained"
               size="small"
               className="submit"
@@ -204,15 +243,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
           />
           {isNewSplit ? null : (
             <Button
-              onClick={(event) => {
-                if (
-                  window.confirm(
-                    'Are you sure you wish to delete this item? This action cannot be undone.'
-                  )
-                ) {
-                  deleteSplit(event);
-                }
-              }}
+              onClick={confirmDelete}
               variant="outlined"
               startIcon={<DeleteIcon />}
               size="small"

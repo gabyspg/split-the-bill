@@ -32,7 +32,10 @@ const PastSplits = () => {
     fetch('/api/getReceipts', getReceiptsRequest)
       .then((res) => res.json())
       .then((data) => {
-        setReceipts(data);
+        const sortedData = data.toSorted((a, b) => {
+          return new Date(a.date) - new Date(b.date);
+        });
+        setReceipts(sortedData);
         return;
       })
       .catch((err) => console.log(err));
