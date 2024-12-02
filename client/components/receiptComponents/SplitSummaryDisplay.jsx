@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PersonReceipt from '../receiptComponents/PersonReceipt.jsx';
 import convertSummaryToBill from '../../utils/convertFormat.js';
 import { updateReceipt, resetReceipt } from '../../slices/receiptSlice.js';
@@ -118,6 +118,13 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       .catch((err) => console.log(err));
   };
 
+  const discardChanges = (event) => {
+    event.preventDefault();
+    dispatch(resetReceipt());
+    dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
+    navigate('/splitSummary');
+  };
+
   return (
     <>
       <h2>{summary.billName}</h2>
@@ -141,14 +148,24 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
           </Button>
         ) : null}
         {!isNewSplit && isEdited ? (
-          <Button
-            onClick={(event) => updateSplit(event)}
-            variant="contained"
-            size="small"
-            className="submit"
-          >
-            Save Updates
-          </Button>
+          <>
+            <Button
+              onClick={(event) => updateSplit(event)}
+              variant="contained"
+              size="small"
+              className="submit"
+            >
+              Save Updates
+            </Button>
+            <Button
+              onClick={(event) => discardChanges(event)}
+              variant="contained"
+              size="small"
+              className="submit"
+            >
+              Cancel
+            </Button>
+          </>
         ) : null}
       </Box>
       <div className="divideReceipts">
