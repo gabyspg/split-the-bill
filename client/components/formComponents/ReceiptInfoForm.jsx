@@ -6,7 +6,7 @@ import InfoInput from './InfoInput.jsx';
 import TaxTipInput from './TaxTipInput.jsx';
 import NavBar from '../NavBar.jsx';
 import { useNavigate } from 'react-router-dom';
-import { updateReceipt } from '../../slices/receiptSlice.js';
+import { resetReceipt, updateReceipt } from '../../slices/receiptSlice.js';
 import { updateSplitHistory } from '../../slices/historySlice.js';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
@@ -132,6 +132,14 @@ const ReceiptInfoForm = () => {
     }
   };
 
+  const discardChanges = (event) => {
+    event.preventDefault();
+    dispatch(resetReceipt());
+    dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
+    navigate('/splitSummary');
+    alert('Discarded edits');
+  };
+
   return (
     <>
       <NavBar />
@@ -156,7 +164,7 @@ const ReceiptInfoForm = () => {
           addItem={addItem}
         />
         <TaxTipInput handleInfoChange={handleInfoChange} billInfo={billInfo} />
-        <Box display="flex" justifyContent="center" alignItems="center">
+        <Box display="flex" justifyContent="center" alignItems="center" gap={1}>
           <Button
             onClick={(event) => submit(event)}
             variant="contained"
@@ -165,6 +173,16 @@ const ReceiptInfoForm = () => {
           >
             {isNewSplit ? 'Split' : 'Update Split'}
           </Button>
+          {isNewSplit ? null : (
+            <Button
+              onClick={(event) => discardChanges(event)}
+              variant="contained"
+              size="small"
+              className="submit"
+            >
+              Cancel
+            </Button>
+          )}
         </Box>
       </div>
     </>
