@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import PersonReceipt from '../receiptComponents/PersonReceipt.jsx';
 import convertSummaryToBill from '../../utils/convertFormat.js';
 import { updateReceipt, resetReceipt } from '../../slices/receiptSlice.js';
@@ -123,6 +123,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
     dispatch(resetReceipt());
     dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
     navigate('/splitSummary');
+    alert('Discarded edits');
   };
 
   return (
