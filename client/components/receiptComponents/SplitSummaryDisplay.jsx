@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import PersonReceipt from '../receiptComponents/PersonReceipt.jsx';
@@ -15,10 +15,15 @@ import {
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import DeleteIcon from '@mui/icons-material/Delete';
+import Alert from '@mui/material/Alert';
 
 const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [alert, setAlert] = useState(false);
+  const [severity, setSeverity] = useState('success');
+  const [content, setContent] = useState('');
 
   const peopleReceipts = [];
   let count = 0;
@@ -87,7 +92,10 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
         if (data) {
           dispatch(updateSplitSummary({ billSummary: data }));
           dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
-          alert('Your receipt has been saved as a new split.');
+
+          setSeverity('success');
+          setContent('Your receipt has been saved as a new split.');
+          setAlert(true);
         }
         return;
       })
@@ -111,7 +119,10 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
         } else if (data) {
           dispatch(updateSplitSummary({ billSummary: data }));
           dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
-          alert('Update Applied');
+
+          setSeverity('success');
+          setContent('Update Applied');
+          setAlert(true);
         }
         return;
       })
@@ -123,11 +134,26 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
     dispatch(resetReceipt());
     dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
     navigate('/splitSummary');
-    alert('Discarded edits');
+
+    setSeverity('success');
+    setContent('Discarded edits');
+    setAlert(true);
   };
 
   return (
     <>
+      {alert ? (
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <Alert
+            variant="filled"
+            severity={severity}
+            onClose={() => setAlert(false)}
+            sx={{ width: '20%' }}
+          >
+            {content}
+          </Alert>
+        </Box>
+      ) : null}
       <h2>{summary.billName}</h2>
       <Box display="flex" justifyContent="center" alignItems="center" gap={1}>
         <Button
