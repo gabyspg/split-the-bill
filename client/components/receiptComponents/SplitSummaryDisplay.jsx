@@ -58,10 +58,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
   };
 
   const confirmDelete = () => {
-    showAlert(
-      'warning',
-      'Are you sure you want to delete this split? This action cannot be undone.'
-    );
+    closeAlert();
     setDeleteAlert(true);
   };
 
@@ -99,45 +96,8 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
     dispatch(resetReceipt());
     dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
     navigate('/splitSummary');
-    showAlert('success', 'Discarded edits');
+    showAlert('success', 'Discarded Edits');
   };
-
-  renderAlert = () =>
-    alert.show && (
-      <Alert
-        variant="filled"
-        severity={alert.severity}
-        onClose={closeAlert()}
-        sx={{ width: '30%' }}
-      >
-        {alert.message}
-      </Alert>
-    );
-
-  const renderDeleteAlert = () =>
-    deleteAlert && (
-      <Alert
-        variant="filled"
-        severity="warning"
-        sx={{ display: 'flex', alignItems: 'center', width: '30%' }}
-        action={
-          <Box sx={{ display: 'flex', gap: 1 }}>
-            <Button size="small" variant="contained" onClick={deleteSplit}>
-              Delete
-            </Button>
-            <Button
-              size="small"
-              variant="contained"
-              onClick={() => setDeleteAlert(false)}
-            >
-              Cancel
-            </Button>
-          </Box>
-        }
-      >
-        {alert.message}
-      </Alert>
-    );
 
   const renderPeopleReceipts = () =>
     Object.entries(summary.people).map(([person, personSummary], index) => (
@@ -148,11 +108,53 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       />
     ));
 
+  const overallSummary = {
+    ...summary,
+    items: summary.foodItems,
+  };
+
   return (
     <>
       <Box display="flex" justifyContent="center" alignItems="center">
-        {renderAlert()}
-        {renderDeleteAlert()}
+        {alert.show ? (
+          <Alert
+            variant="filled"
+            severity={alert.severity}
+            onClose={closeAlert}
+            sx={{ width: '30%' }}
+          >
+            {alert.message}
+          </Alert>
+        ) : null}
+        {deleteAlert ? (
+          <Alert
+            variant="filled"
+            severity="warning"
+            sx={{ display: 'flex', alignItems: 'center', width: '30%' }}
+            action={
+              <Box sx={{ display: 'flex', gap: 1 }}>
+                <Button
+                  color="delete"
+                  size="small"
+                  variant="contained"
+                  onClick={deleteSplit}
+                >
+                  Delete
+                </Button>
+                <Button
+                  size="small"
+                  variant="contained"
+                  onClick={() => setDeleteAlert(false)}
+                >
+                  Cancel
+                </Button>
+              </Box>
+            }
+          >
+            Are you sure you want to delete this split? This action cannot be
+            undone.
+          </Alert>
+        ) : null}
       </Box>
       <h2>{summary.billName}</h2>
       <Box display="flex" justifyContent="center" alignItems="center" gap={1}>
@@ -197,7 +199,10 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       </Box>
       <div className="divideReceipts">
         <div className="overallReceipt">
-          <PersonReceipt person={summary.restaurant} personSummary={summary} />
+          <PersonReceipt
+            person={summary.restaurant}
+            personSummary={overallSummary}
+          />
           {!isNewSplit && (
             <Button
               onClick={confirmDelete}

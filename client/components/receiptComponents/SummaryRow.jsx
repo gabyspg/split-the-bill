@@ -1,8 +1,6 @@
 import React from 'react';
 
-const SummaryRow = (props) => {
-  let { name, price } = props;
-  
+const SummaryRow = ({ name, price }) => {
   if (isNaN(price) || price === '') {
     price = Number(0);
   }
@@ -10,7 +8,7 @@ const SummaryRow = (props) => {
   return (
     <div className="summary-row">
       <span className="summary-name">{name}</span>
-      <span className="summary-price">${price.toFixed(2)}</span>
+      <span className="summary-price">${Number(price).toFixed(2)}</span>
     </div>
   );
 };

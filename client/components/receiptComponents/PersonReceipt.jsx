@@ -2,14 +2,12 @@ import React from 'react';
 import SummaryRow from './SummaryRow.jsx';
 import ItemRow from './ItemRow.jsx';
 
-const PersonReceipt = (props) => {
-  const { person, personSummary } = props;
-
-  const { tip, tax, subtotal, total, foodItems } = personSummary;
+const PersonReceipt = ({ person, personSummary }) => {
+  const { tip, tax, subtotal, total, items } = personSummary;
 
   const itemsList = [];
-  for (let i = 0; i < foodItems.length; i++) {
-    const item = foodItems[i];
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
     itemsList.push(
       <ItemRow
         quantity={item.quantity}
