@@ -21,30 +21,34 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [alert, setAlert] = useState(false);
-  const [deleteAlert, setDeleteAlert] = useState(false);
-  const [severity, setSeverity] = useState('success');
-  const [content, setContent] = useState('');
+  const [alert, setAlert] = useState({
+    show: false,
+    severity: '',
+    message: '',
+  });
+  const [deleteAlert, setDeleteAlert] = useState('');
 
-  const peopleReceipts = [];
-  let count = 0;
-  for (let person in summary.people) {
-    count++;
-    peopleReceipts.push(
-      <PersonReceipt
-        person={person}
-        personSummary={summary.people[person]}
-        key={`person ${count}`}
-      />
-    );
-  }
+  const showAlert = (severity, message) => {
+    setAlert({ show: true, severity, message });
+  };
 
-  const overallSummary = {
-    tax: Number(summary.tax),
-    tip: Number(summary.tip),
-    subtotal: Number(summary.subtotal),
-    total: Number(summary.total),
-    items: summary.foodItems,
+  const closeAlert = () => {
+    setAlert({ ...alert, show: false });
+  };
+
+  const handleApiCall = async (url, method, body = null, onSuccess) => {
+    try {
+      const response = await fetch(url, {
+        method,
+        credentials: 'same-origin',
+        headers: { 'Content-Type': 'application/json' },
+        body: body ? JSON.stringify(body) : null,
+      });
+      const data = await response.json();
+      if (data) onSuccess(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const editSplit = () => {
@@ -53,145 +57,102 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
     navigate('/updateReceipt');
   };
 
-  const confirmDelete = (event) => {
-    setSeverity('warning');
-    setContent(
+  const confirmDelete = () => {
+    showAlert(
+      'warning',
       'Are you sure you want to delete this split? This action cannot be undone.'
     );
-    setAlert(false);
     setDeleteAlert(true);
   };
 
   const deleteSplit = () => {
-    const deleteReceiptRequest = {
-      method: 'DELETE',
-      credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json' },
-    };
-
-    fetch(`/api/deleteReceipt/${id}`, deleteReceiptRequest)
-      .then((res) => res.json())
-      .then((data) => {
-        if (!data) {
-          alert('Your receipt has been deleted.');
-        }
-        dispatch(resetReceipt());
-        dispatch(resetSplitSummary());
-        dispatch(resetSplitHistory());
-        navigate('/pastSplits');
-        return;
-      })
-      .catch((err) => console.log(err));
+    handleApiCall(`/api/deleteReceipt/${id}`, 'DELETE', null, () => {
+      dispatch(resetReceipt());
+      dispatch(resetSplitSummary());
+      dispatch(resetSplitHistory());
+      navigate('/pastSplits');
+    });
   };
 
   const saveSplit = () => {
-    const saveSummaryRequest = {
-      method: 'POST',
-      credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(summary),
-    };
-
-    fetch('/api/saveSummary', saveSummaryRequest)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          dispatch(updateSplitSummary({ billSummary: data }));
-          dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
-
-          setSeverity('success');
-          setContent('Your receipt has been saved as a new split.');
-          setAlert(true);
-        }
-        return;
-      })
-      .catch((err) => console.log(err));
+    handleApiCall('/api/saveSummary', 'POST', summary, (data) => {
+      dispatch(updateSplitSummary({ billSummary: data }));
+      dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
+      showAlert('success', 'Your receipt has been saved as a new split.');
+    });
   };
 
   const updateSplit = () => {
-    const updateSummaryRequest = {
-      method: 'PUT',
-      credentials: 'same-origin',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: id, update: summary }),
-    };
-
-    fetch('/api/updateSummary', updateSummaryRequest)
-      .then((res) => res.json())
-      .then((data) => {
-        if (data) {
-          dispatch(updateSplitSummary({ billSummary: data }));
-          dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
-
-          setSeverity('success');
-          setContent('Update Applied');
-          setAlert(true);
-        }
-        return;
-      })
-      .catch((err) => console.log(err));
+    handleApiCall(
+      '/api/updateSummary',
+      'PUT',
+      { id: id, update: summary },
+      (data) => {
+        dispatch(updateSplitSummary({ billSummary: data }));
+        dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
+        showAlert('success', 'Update Applied');
+      }
+    );
   };
 
   const discardChanges = () => {
     dispatch(resetReceipt());
     dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
     navigate('/splitSummary');
-
-    setSeverity('success');
-    setContent('Discarded edits');
-    setAlert(true);
+    showAlert('success', 'Discarded edits');
   };
+
+  renderAlert = () =>
+    alert.show && (
+      <Alert
+        variant="filled"
+        severity={alert.severity}
+        onClose={closeAlert()}
+        sx={{ width: '30%' }}
+      >
+        {alert.message}
+      </Alert>
+    );
+
+  const renderDeleteAlert = () =>
+    deleteAlert && (
+      <Alert
+        variant="filled"
+        severity="warning"
+        sx={{ display: 'flex', alignItems: 'center', width: '30%' }}
+        action={
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            <Button size="small" variant="contained" onClick={deleteSplit}>
+              Delete
+            </Button>
+            <Button
+              size="small"
+              variant="contained"
+              onClick={() => setDeleteAlert(false)}
+            >
+              Cancel
+            </Button>
+          </Box>
+        }
+      >
+        {alert.message}
+      </Alert>
+    );
+
+  const renderPeopleReceipts = () =>
+    Object.entries(summary.people).map(([person, personSummary], index) => (
+      <PersonReceipt
+        person={person}
+        personSummary={personSummary}
+        key={`person-${index}`}
+      />
+    ));
 
   return (
     <>
       <Box display="flex" justifyContent="center" alignItems="center">
-        {alert ? (
-          <Alert
-            variant="filled"
-            severity={severity}
-            onClose={() => setAlert(false)}
-            sx={{ width: '30%' }}
-          >
-            {content}
-          </Alert>
-        ) : null}
-        {deleteAlert ? (
-          <Alert
-            variant="filled"
-            severity={severity}
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              width: '30%',
-            }}
-            action={
-              <Box
-                sx={{
-                  display: 'flex',
-                  gap: 1,
-                }}
-              >
-                <Button
-                  color="delete"
-                  size="small"
-                  variant="contained"
-                  onClick={deleteSplit}
-                >
-                  Delete
-                </Button>
-                <Button
-                  variant="contained"
-                  size="small"
-                  onClick={() => setDeleteAlert(false)}
-                >
-                  Cancel
-                </Button>
-              </Box>
-            }
-          >
-            {content}
-          </Alert>
-        ) : null}
+        {renderAlert()}
+        {renderDeleteAlert()}
       </Box>
       <h2>{summary.billName}</h2>
       <Box display="flex" justifyContent="center" alignItems="center" gap={1}>
@@ -203,7 +164,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
         >
           Edit
         </Button>
-        {isNewSplit ? (
+        {isNewSplit && (
           <Button
             onClick={saveSplit}
             variant="contained"
@@ -212,8 +173,8 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
           >
             Save
           </Button>
-        ) : null}
-        {!isNewSplit && isEdited ? (
+        )}
+        {!isNewSplit && isEdited && (
           <>
             <Button
               onClick={updateSplit}
@@ -232,16 +193,12 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
               Cancel
             </Button>
           </>
-        ) : null}
+        )}
       </Box>
       <div className="divideReceipts">
         <div className="overallReceipt">
-          <PersonReceipt
-            person={summary.restaurant}
-            personSummary={overallSummary}
-            key={`overallReceipt`}
-          />
-          {isNewSplit ? null : (
+          <PersonReceipt person={summary.restaurant} personSummary={summary} />
+          {!isNewSplit && (
             <Button
               onClick={confirmDelete}
               variant="outlined"
@@ -254,7 +211,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
             </Button>
           )}
         </div>
-        <div className="allReceipts">{peopleReceipts}</div>
+        <div className="allReceipts">{renderPeopleReceipts()}</div>
       </div>
     </>
   );

@@ -5,11 +5,11 @@ import ItemRow from './ItemRow.jsx';
 const PersonReceipt = (props) => {
   const { person, personSummary } = props;
 
-  const { tip, tax, subtotal, total, items } = personSummary;
+  const { tip, tax, subtotal, total, foodItems } = personSummary;
 
   const itemsList = [];
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
+  for (let i = 0; i < foodItems.length; i++) {
+    const item = foodItems[i];
     itemsList.push(
       <ItemRow
         quantity={item.quantity}
