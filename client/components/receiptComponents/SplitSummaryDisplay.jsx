@@ -116,7 +116,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
   return (
     <>
       <Box display="flex" justifyContent="center" alignItems="center">
-        {alert.show ? (
+        {alert.show && (
           <Alert
             variant="filled"
             severity={alert.severity}
@@ -125,8 +125,8 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
           >
             {alert.message}
           </Alert>
-        ) : null}
-        {deleteAlert ? (
+        )}
+        {deleteAlert && (
           <Alert
             variant="filled"
             severity="warning"
@@ -154,7 +154,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
             Are you sure you want to delete this split? This action cannot be
             undone.
           </Alert>
-        ) : null}
+        )}
       </Box>
       <h2>{summary.billName}</h2>
       <Box display="flex" justifyContent="center" alignItems="center" gap={1}>
