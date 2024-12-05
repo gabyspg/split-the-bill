@@ -4,7 +4,6 @@ import AddPerson from './AddPerson.jsx';
 import AddItem from './AddItem.jsx';
 import InfoInput from './InfoInput.jsx';
 import TaxTipInput from './TaxTipInput.jsx';
-import NavBar from '../NavBar.jsx';
 import { useNavigate } from 'react-router-dom';
 import { resetReceipt, updateReceipt } from '../../slices/receiptSlice.js';
 import { updateSplitHistory } from '../../slices/historySlice.js';
@@ -156,7 +155,6 @@ const ReceiptInfoForm = () => {
 
   return (
     <>
-      <NavBar />
       <Box display="flex" justifyContent="center" alignItems="center">
         {alert.show && (
           <Alert

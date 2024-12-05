@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import ReceiptDisplay from '../receiptComponents/ReceiptDisplay.jsx';
 import fetch from 'isomorphic-fetch';
 import { updateSplitSummary } from '../../slices/splitSlice.js';
-import NavBar from '../NavBar.jsx';
 import { resetReceipt } from '../../slices/receiptSlice.js';
 import { updateSplitHistory } from '../../slices/historySlice.js';
 
@@ -56,7 +55,6 @@ const PastSplits = () => {
 
   return (
     <>
-      <NavBar />
       <h2>Past Splits</h2>
       <div className="allPastReceipts">{renderReceipt}</div>
     </>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import calculateSummary from '../../utils/calculateSummary.js';
-import NavBar from '../NavBar.jsx';
 import SplitSummaryDisplay from '../receiptComponents/SplitSummaryDisplay.jsx';
 
 const SplitSummary = () => {
@@ -17,7 +16,6 @@ const SplitSummary = () => {
 
   return (
     <>
-      <NavBar />
       <SplitSummaryDisplay
         isNewSplit={isNewSplit}
         isEdited={isEdited}
