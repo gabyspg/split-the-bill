@@ -26,16 +26,18 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <ThemeProvider theme={theme}>
-        <BrowserRouter
-          future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
-        >
-          <ScrollToTop />
-          <Routes>
-            {routes.map(({ path, element }) => (
-              <Route key={path} path={path} element={element} />
-            ))}
-          </Routes>
-        </BrowserRouter>
+        <div>
+          <BrowserRouter
+            future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+          >
+            <ScrollToTop />
+            <Routes>
+              {routes.map(({ path, element }) => (
+                <Route key={path} path={path} element={element} />
+              ))}
+            </Routes>
+          </BrowserRouter>
+        </div>
       </ThemeProvider>
     </LocalizationProvider>
   </Provider>
