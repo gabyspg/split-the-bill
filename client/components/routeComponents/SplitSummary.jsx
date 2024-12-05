@@ -15,14 +15,12 @@ const SplitSummary = () => {
     isNewSplit || isEdited ? calculateSummary(currentBill) : split.billSummary;
 
   return (
-    <>
-      <SplitSummaryDisplay
-        isNewSplit={isNewSplit}
-        isEdited={isEdited}
-        summary={summary}
-        id={id}
-      />
-    </>
+    <SplitSummaryDisplay
+      isNewSplit={isNewSplit}
+      isEdited={isEdited}
+      summary={summary}
+      id={id}
+    />
   );
 };
 export default SplitSummary;
