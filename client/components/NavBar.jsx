@@ -1,6 +1,6 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import ReceiptIcon from '@mui/icons-material/Receipt';
-import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Container from '@mui/material/Container';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,7 +12,7 @@ import { resetReceipt } from '../slices/receiptSlice.js';
 import { resetSplitSummary } from '../slices/splitSlice.js';
 import { resetSplitHistory } from '../slices/historySlice.js';
 
-function ResponsiveAppBar() {
+function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -71,4 +71,4 @@ function ResponsiveAppBar() {
   );
 }
 
-export default ResponsiveAppBar;
+export default NavBar;
