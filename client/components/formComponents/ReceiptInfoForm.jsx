@@ -135,7 +135,7 @@ const ReceiptInfoForm = () => {
   const discardChanges = () => {
     dispatch(resetReceipt());
     dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
-    toast.success('Discarded Edits');
+    toast.info('Discarded Edits');
     navigate('/splitSummary');
   };
 
