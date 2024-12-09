@@ -6,6 +6,8 @@ import PastSplits from './routeComponents/PastSplits.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ScrollToTop from '../utils/ScrollToTop.js';
 import Home from './routeComponents/Home.jsx';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   const routes = [
@@ -26,6 +28,7 @@ const App = () => {
       >
         <ScrollToTop />
         <NavBar />
+        <ToastContainer theme="dark" />
         <Routes>
           {routes.map(({ path, element }) => (
             <Route key={path} path={path} element={element} />

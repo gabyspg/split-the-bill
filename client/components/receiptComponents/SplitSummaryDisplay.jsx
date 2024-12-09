@@ -16,24 +16,22 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Alert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
+import { toast } from 'react-toastify';
 
 const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [alert, setAlert] = useState({
-    show: false,
-    severity: '',
-    message: '',
-  });
-  const [deleteAlert, setDeleteAlert] = useState('');
+  const [deleteAlertOpen, setDeleteAlertOpen] = useState(false);
 
-  const showAlert = (severity, message) => {
-    setAlert({ show: true, severity, message });
+  const openConfirmDeleteAlert = () => {
+    setDeleteAlertOpen(true);
   };
 
-  const closeAlert = () => {
-    setAlert({ ...alert, show: false });
+  const handleCancelDelete = () => {
+    setDeleteAlertOpen(false);
+    toast.info('Split was not deleted');
   };
 
   const handleApiCall = async (url, method, body = null, onSuccess) => {
@@ -57,16 +55,12 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
     navigate('/updateReceipt');
   };
 
-  const confirmDelete = () => {
-    closeAlert();
-    setDeleteAlert(true);
-  };
-
   const deleteSplit = () => {
     handleApiCall(`/api/deleteReceipt/${id}`, 'DELETE', null, () => {
       dispatch(resetReceipt());
       dispatch(resetSplitSummary());
       dispatch(resetSplitHistory());
+      toast.success('Your split has been deleted.');
       navigate('/pastSplits');
     });
   };
@@ -75,7 +69,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
     handleApiCall('/api/saveSummary', 'POST', summary, (data) => {
       dispatch(updateSplitSummary({ billSummary: data }));
       dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
-      showAlert('success', 'Your receipt has been saved as a new split.');
+      toast.success('Your receipt has been saved as a new split.');
     });
   };
 
@@ -87,7 +81,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       (data) => {
         dispatch(updateSplitSummary({ billSummary: data }));
         dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
-        showAlert('success', 'Update Applied');
+        toast.success('Update Applied');
       }
     );
   };
@@ -96,7 +90,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
     dispatch(resetReceipt());
     dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
     navigate('/splitSummary');
-    showAlert('success', 'Discarded Edits');
+    toast.success('Discarded Edits');
   };
 
   const renderPeopleReceipts = () =>
@@ -116,21 +110,20 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
   return (
     <>
       <Box display="flex" justifyContent="center" alignItems="center">
-        {alert.show && (
-          <Alert
-            variant="filled"
-            severity={alert.severity}
-            onClose={closeAlert}
-            sx={{ width: '30%' }}
-          >
-            {alert.message}
-          </Alert>
-        )}
-        {deleteAlert && (
+        <Snackbar
+          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+          sx={{ height: '27%' }}
+          open={deleteAlertOpen}
+          onClose={handleCancelDelete}
+        >
           <Alert
             variant="filled"
             severity="warning"
-            sx={{ display: 'flex', alignItems: 'center', width: '30%' }}
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              width: '100%',
+            }}
             action={
               <Box sx={{ display: 'flex', gap: 1 }}>
                 <Button
@@ -144,7 +137,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
                 <Button
                   size="small"
                   variant="contained"
-                  onClick={() => setDeleteAlert(false)}
+                  onClick={handleCancelDelete}
                 >
                   Cancel
                 </Button>
@@ -154,7 +147,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
             Are you sure you want to delete this split? This action cannot be
             undone.
           </Alert>
-        )}
+        </Snackbar>
       </Box>
       <h2>{summary.billName}</h2>
       <Box display="flex" justifyContent="center" alignItems="center" gap={1}>
@@ -205,7 +198,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
           />
           {!isNewSplit && (
             <Button
-              onClick={confirmDelete}
+              onClick={openConfirmDeleteAlert}
               variant="outlined"
               startIcon={<DeleteIcon />}
               size="small"
