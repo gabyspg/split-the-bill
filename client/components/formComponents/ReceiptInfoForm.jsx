@@ -9,7 +9,7 @@ import { resetReceipt, updateReceipt } from '../../slices/receiptSlice.js';
 import { updateSplitHistory } from '../../slices/historySlice.js';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
+import { toast } from 'react-toastify';
 
 const ReceiptInfoForm = () => {
   const currentBill = useSelector((state) => state.receipt);
@@ -21,12 +21,6 @@ const ReceiptInfoForm = () => {
   const [people, setPeople] = useState(currentBill.people);
   const [foodItems, setFoodItems] = useState(currentBill.foodItems);
   const [billInfo, setBillInfo] = useState(currentBill.billInfo);
-
-  const [alert, setAlert] = useState({
-    show: false,
-    severity: '',
-    message: '',
-  });
 
   const handleInfoChange = (event) => {
     let data = JSON.parse(JSON.stringify(billInfo));
@@ -124,49 +118,29 @@ const ReceiptInfoForm = () => {
     return true;
   };
 
-  const showAlert = (severity, message) => {
-    setAlert({ show: true, severity, message });
-  };
-
-  const closeAlert = () => {
-    setAlert({ ...alert, show: false });
-  };
-
   const submit = (event) => {
     event.preventDefault();
     const ready = checkFields();
     if (ready) {
-      dispatch(updateReceipt({ billInfo, people, foodItems }));
       if (!isNewSplit) {
         dispatch(updateSplitHistory({ isNewSplit, isEdited: true }));
       }
+      dispatch(updateReceipt({ billInfo, people, foodItems }));
       navigate('/splitSummary');
     } else {
-      showAlert('error', 'Please fill out the form completely');
+      toast.error('Please fill out the form completely');
     }
   };
 
   const discardChanges = () => {
     dispatch(resetReceipt());
     dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
-    showAlert('success', 'Discarded Edits');
+    toast.success('Discarded Edits');
     navigate('/splitSummary');
   };
 
   return (
     <>
-      <Box display="flex" justifyContent="center" alignItems="center">
-        {alert.show && (
-          <Alert
-            variant="filled"
-            severity={alert.severity}
-            onClose={closeAlert}
-            sx={{ width: '30%' }}
-          >
-            {alert.message}
-          </Alert>
-        )}
-      </Box>
       <h2>Split Bill</h2>
       <div className="splitForm">
         <InfoInput
@@ -195,7 +169,7 @@ const ReceiptInfoForm = () => {
             size="small"
             className="submit"
           >
-            {isNewSplit ? 'Split' : 'Update Split'}
+            Split
           </Button>
           {isNewSplit ? null : (
             <Button

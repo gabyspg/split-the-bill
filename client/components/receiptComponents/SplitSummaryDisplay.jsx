@@ -57,11 +57,11 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
 
   const deleteSplit = () => {
     handleApiCall(`/api/deleteReceipt/${id}`, 'DELETE', null, () => {
+      toast.success('Your split has been deleted.');
+      navigate('/pastSplits');
       dispatch(resetReceipt());
       dispatch(resetSplitSummary());
       dispatch(resetSplitHistory());
-      toast.success('Your split has been deleted.');
-      navigate('/pastSplits');
     });
   };
 
@@ -89,7 +89,6 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
   const discardChanges = () => {
     dispatch(resetReceipt());
     dispatch(updateSplitHistory({ isNewSplit: false, isEdited: false }));
-    navigate('/splitSummary');
     toast.success('Discarded Edits');
   };
 
@@ -109,46 +108,44 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
 
   return (
     <>
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <Snackbar
-          anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-          sx={{ height: '27%' }}
-          open={deleteAlertOpen}
-          onClose={handleCancelDelete}
+      <Snackbar
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+        sx={{ height: '27%' }}
+        open={deleteAlertOpen}
+        onClose={handleCancelDelete}
+      >
+        <Alert
+          variant="filled"
+          severity="warning"
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            width: '100%',
+          }}
+          action={
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <Button
+                color="delete"
+                size="small"
+                variant="contained"
+                onClick={deleteSplit}
+              >
+                Delete
+              </Button>
+              <Button
+                size="small"
+                variant="contained"
+                onClick={handleCancelDelete}
+              >
+                Cancel
+              </Button>
+            </Box>
+          }
         >
-          <Alert
-            variant="filled"
-            severity="warning"
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              width: '100%',
-            }}
-            action={
-              <Box sx={{ display: 'flex', gap: 1 }}>
-                <Button
-                  color="delete"
-                  size="small"
-                  variant="contained"
-                  onClick={deleteSplit}
-                >
-                  Delete
-                </Button>
-                <Button
-                  size="small"
-                  variant="contained"
-                  onClick={handleCancelDelete}
-                >
-                  Cancel
-                </Button>
-              </Box>
-            }
-          >
-            Are you sure you want to delete this split? This action cannot be
-            undone.
-          </Alert>
-        </Snackbar>
-      </Box>
+          Are you sure you want to delete this split? This action cannot be
+          undone.
+        </Alert>
+      </Snackbar>
       <h2>{summary.billName}</h2>
       <Box display="flex" justifyContent="center" alignItems="center" gap={1}>
         <Button
