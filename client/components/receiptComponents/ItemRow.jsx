@@ -1,7 +1,6 @@
 import React from 'react';
 
-const ItemRow = (props) => {
-  let { name, price, quantity } = props;
+const ItemRow = ({ name, price, quantity }) => {
 
   if (isNaN(price) || price === '') {
     price = Number(0);

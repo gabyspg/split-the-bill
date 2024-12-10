@@ -5,10 +5,8 @@ import ItemRow from './ItemRow.jsx';
 const PersonReceipt = ({ person, personSummary }) => {
   const { tip, tax, subtotal, total, items } = personSummary;
 
-  const itemsList = [];
-  for (let i = 0; i < items.length; i++) {
-    const item = items[i];
-    itemsList.push(
+  const itemsList = items.map((item, i) => {
+    return (
       <ItemRow
         quantity={item.quantity}
         name={item.itemName}
@@ -16,7 +14,7 @@ const PersonReceipt = ({ person, personSummary }) => {
         key={`item ${i}`}
       />
     );
-  }
+  });
 
   return (
     <div className="receipt">
