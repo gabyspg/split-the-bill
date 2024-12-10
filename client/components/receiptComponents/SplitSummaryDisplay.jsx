@@ -103,7 +103,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
 
   const overallSummary = {
     ...summary,
-    items: summary.foodItems,
+    items: summary.items,
   };
 
   return (

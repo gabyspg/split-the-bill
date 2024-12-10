@@ -43,9 +43,7 @@ const billSchema = new Schema({
     type: Map,
     of: personSchema,
   },
-  foodItems: [
-    { itemName: String, price: Number, quantity: Number, people: Array },
-  ],
+  items: [{ itemName: String, price: Number, quantity: Number, people: Array }],
 });
 
 const Bill = mongoose.model('bills', billSchema);

@@ -6,15 +6,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 
-const AddItem = (props) => {
-  const {
-    peopleInputFields,
-    foodInputFields,
-    handleFoodChange,
-    removeFoodItem,
-    addItem,
-  } = props;
-
+const ItemInputs = ({
+  people,
+  items,
+  handleItemChange,
+  removeItem,
+  addItem,
+}) => {
   return (
     <>
       <label className="form-group">Items</label>
@@ -24,7 +22,7 @@ const AddItem = (props) => {
         noValidate
         autoComplete="off"
       >
-        {foodInputFields.map((foodItem, index) => {
+        {items.map((foodItem, index) => {
           return (
             <Box
               display="flex"
@@ -37,7 +35,7 @@ const AddItem = (props) => {
                 label={`Item ${index + 1}`}
                 name="itemName"
                 value={foodItem.itemName}
-                onChange={(event) => handleFoodChange(index, event)}
+                onChange={(event) => handleItemChange(index, event)}
                 size="small"
                 variant="outlined"
               />
@@ -47,7 +45,7 @@ const AddItem = (props) => {
                 name="price"
                 type="number"
                 value={foodItem.price}
-                onChange={(event) => handleFoodChange(index, event)}
+                onChange={(event) => handleItemChange(index, event)}
                 size="small"
                 variant="outlined"
               />
@@ -57,20 +55,20 @@ const AddItem = (props) => {
                 name="quantity"
                 type="number"
                 value={foodItem.quantity}
-                onChange={(event) => handleFoodChange(index, event)}
+                onChange={(event) => handleItemChange(index, event)}
                 size="small"
                 variant="outlined"
               />
               <MultipleSelectCheckmarks
-                peopleInputFields={peopleInputFields}
+                people={people}
                 peopleSelect={foodItem.people}
-                handleFoodChange={handleFoodChange}
+                handleItemChange={handleItemChange}
                 index={index}
               />
               <IconButton
                 onClick={(e) => {
                   e.preventDefault();
-                  removeFoodItem(index);
+                  removeItem(index);
                 }}
                 aria-label="delete"
                 size="small"
@@ -94,4 +92,4 @@ const AddItem = (props) => {
   );
 };
 
-export default AddItem;
+export default ItemInputs;

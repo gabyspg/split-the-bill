@@ -7,11 +7,11 @@ const convertSummaryToBill = (summary) => {
     tip: summary.tip,
   };
   const people = [];
-  const foodItems = summary.foodItems;
+  const items = summary.items;
   for (let person in summary.people) {
     people.push({ name: person });
   }
-  return { billInfo, people, foodItems };
+  return { billInfo, people, items };
 };
 
 export default convertSummaryToBill;

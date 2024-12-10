@@ -1,7 +1,7 @@
-const calculateSubtotal = (foodItems) => {
+const calculateSubtotal = (items) => {
   let subtotal = 0;
-  for (let i = 0; i < foodItems.length; i++) {
-    const item = foodItems[i];
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
     const itemTotal = Number(item.price) * Number(item.quantity);
     subtotal += itemTotal;
   }
@@ -19,8 +19,8 @@ const calculateTotal = (a, b, c) => {
 };
 
 const calculateSummary = (billObj) => {
-  const { billInfo, people, foodItems } = billObj;
-  const subtotal = calculateSubtotal(foodItems);
+  const { billInfo, people, items } = billObj;
+  const subtotal = calculateSubtotal(items);
   const taxPercentage = calculatePercent(billInfo.tax, subtotal);
   const tipPercentage = calculatePercent(billInfo.tip, subtotal);
   const total = calculateTotal(subtotal, billInfo.tax, billInfo.tip);
@@ -36,7 +36,7 @@ const calculateSummary = (billObj) => {
     tipPercentage: tipPercentage,
     total: total,
     people: {},
-    foodItems: foodItems,
+    items: items,
   };
 
   for (let i = 0; i < people.length; i++) {
@@ -48,8 +48,8 @@ const calculateSummary = (billObj) => {
       tip: 0,
       total: 0,
     };
-    for (let j = 0; j < foodItems.length; j++) {
-      const item = foodItems[j];
+    for (let j = 0; j < items.length; j++) {
+      const item = items[j];
       const peopleSet = new Set(item.people);
       if (!peopleSet.has(person)) {
         continue;

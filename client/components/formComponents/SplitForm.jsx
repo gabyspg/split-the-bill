@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import AddPerson from './AddPerson.jsx';
-import AddItem from './AddItem.jsx';
+import PeopleInputs from './PeopleInputs.jsx';
+import ItemInputs from './ItemInputs.jsx';
 import InfoInput from './InfoInput.jsx';
 import TaxTipInput from './TaxTipInput.jsx';
 import { useNavigate } from 'react-router-dom';
@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { toast } from 'react-toastify';
 
-const ReceiptInfoForm = () => {
+const SplitForm = () => {
   const currentBill = useSelector((state) => state.receipt);
   const { isNewSplit } = useSelector((state) => state.history);
 
@@ -19,7 +19,7 @@ const ReceiptInfoForm = () => {
   const navigate = useNavigate();
 
   const [people, setPeople] = useState(currentBill.people);
-  const [foodItems, setFoodItems] = useState(currentBill.foodItems);
+  const [items, setItems] = useState(currentBill.items);
   const [billInfo, setBillInfo] = useState(currentBill.billInfo);
 
   const handleInfoChange = (event) => {
@@ -36,7 +36,7 @@ const ReceiptInfoForm = () => {
 
   const handlePersonChange = (index, event) => {
     let peopleData = JSON.parse(JSON.stringify(people));
-    let itemsData = JSON.parse(JSON.stringify(foodItems));
+    let itemsData = JSON.parse(JSON.stringify(items));
 
     const previousPerson = peopleData[index][event.target.name];
     const newPerson = event.target.value;
@@ -53,12 +53,12 @@ const ReceiptInfoForm = () => {
 
     peopleData[index][event.target.name] = event.target.value;
     setPeople(peopleData);
-    setFoodItems(updatedItemsPeopleData);
+    setItems(updatedItemsPeopleData);
   };
 
-  const handleFoodChange = (index, event) => {
+  const handleItemChange = (index, event) => {
     const { name, value } = event.target;
-    let data = JSON.parse(JSON.stringify(foodItems));
+    let data = JSON.parse(JSON.stringify(items));
 
     if (name === 'people') {
       const valueArray = typeof value === 'string' ? value.split(',') : value;
@@ -66,7 +66,7 @@ const ReceiptInfoForm = () => {
     } else {
       data[index][name] = value;
     }
-    setFoodItems(data);
+    setItems(data);
   };
 
   const addPerson = () => {
@@ -76,7 +76,7 @@ const ReceiptInfoForm = () => {
 
   const removePerson = (index) => {
     let peopleData = JSON.parse(JSON.stringify(people));
-    let itemsData = JSON.parse(JSON.stringify(foodItems));
+    let itemsData = JSON.parse(JSON.stringify(items));
 
     const removedPerson = peopleData[index].name;
     const updatedItemsPeopleData = itemsData.map((item) => {
@@ -89,26 +89,26 @@ const ReceiptInfoForm = () => {
 
     peopleData.splice(index, 1);
     setPeople(peopleData);
-    setFoodItems(updatedItemsPeopleData);
+    setItems(updatedItemsPeopleData);
   };
 
   const addItem = () => {
     let newItem = { itemName: '', price: '', quantity: '', people: [] };
-    setFoodItems([...foodItems, newItem]);
+    setItems([...items, newItem]);
   };
 
   const removeItem = (index) => {
-    let data = JSON.parse(JSON.stringify(foodItems));
+    let data = JSON.parse(JSON.stringify(items));
     data.splice(index, 1);
-    setFoodItems(data);
+    setItems(data);
   };
 
   const checkFields = () => {
     if (
       people.length === 0 ||
-      foodItems.length === 0 ||
+      items.length === 0 ||
       people.some((person) => person.name === '') ||
-      foodItems.some((item) =>
+      items.some((item) =>
         Object.values(item).some((value) => value.length === 0)
       ) ||
       Object.values(billInfo).some((value) => value === '')
@@ -125,7 +125,7 @@ const ReceiptInfoForm = () => {
       if (!isNewSplit) {
         dispatch(updateSplitHistory({ isNewSplit, isEdited: true }));
       }
-      dispatch(updateReceipt({ billInfo, people, foodItems }));
+      dispatch(updateReceipt({ billInfo, people, items }));
       navigate('/splitSummary');
     } else {
       toast.error('Please fill out the form completely');
@@ -148,17 +148,17 @@ const ReceiptInfoForm = () => {
           handleDateChange={handleDateChange}
           billInfo={billInfo}
         />
-        <AddPerson
-          peopleInputFields={people}
+        <PeopleInputs
+          people={people}
           handlePersonChange={handlePersonChange}
           removePerson={removePerson}
           addPerson={addPerson}
         />
-        <AddItem
-          peopleInputFields={people}
-          handleFoodChange={handleFoodChange}
-          foodInputFields={foodItems}
-          removeFoodItem={removeItem}
+        <ItemInputs
+          people={people}
+          handleItemChange={handleItemChange}
+          items={items}
+          removeItem={removeItem}
           addItem={addItem}
         />
         <TaxTipInput handleInfoChange={handleInfoChange} billInfo={billInfo} />
@@ -187,4 +187,4 @@ const ReceiptInfoForm = () => {
   );
 };
 
-export default ReceiptInfoForm;
+export default SplitForm;

@@ -1,8 +1,8 @@
 import React from 'react';
-import ReceiptInfoForm from '../formComponents/ReceiptInfoForm.jsx';
+import SplitForm from '../formComponents/SplitForm.jsx';
 
 const EditReceiptInfo = () => {
-  return <ReceiptInfoForm />;
+  return <SplitForm />;
 };
 
 export default EditReceiptInfo;

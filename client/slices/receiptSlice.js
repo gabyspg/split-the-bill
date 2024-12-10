@@ -10,7 +10,7 @@ const initialState = {
     tip: '',
   },
   people: [{ name: '' }],
-  foodItems: [{ itemName: '', price: '', quantity: '', people: [] }],
+  items: [{ itemName: '', price: '', quantity: '', people: [] }],
 };
 
 export const receiptSlice = createSlice({
@@ -18,10 +18,10 @@ export const receiptSlice = createSlice({
   initialState,
   reducers: {
     updateReceipt: (state, action) => {
-      const { billInfo, people, foodItems } = action.payload;
+      const { billInfo, people, items } = action.payload;
       state.billInfo = billInfo;
       state.people = people;
-      state.foodItems = foodItems;
+      state.items = items;
     },
     resetReceipt: () => {
       return initialState;

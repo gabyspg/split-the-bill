@@ -8,12 +8,12 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 
 const MultipleSelectCheckmarks = ({
-  peopleInputFields,
-  handleFoodChange,
+  people,
+  handleItemChange,
   index,
   peopleSelect,
 }) => {
-  const peopleNames = peopleInputFields.map((person) => {
+  const peopleNames = people.map((person) => {
     return person.name;
   });
   const names = [...new Set(peopleNames)];
@@ -46,7 +46,7 @@ const MultipleSelectCheckmarks = ({
           input={<OutlinedInput label="Select People" />}
           name="people"
           value={peopleSelect}
-          onChange={(event) => handleFoodChange(index, event)}
+          onChange={(event) => handleItemChange(index, event)}
           renderValue={(selected) => {
             return selected.join(', ');
           }}

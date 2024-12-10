@@ -26,7 +26,7 @@ const initialState = {
         total: 0,
       },
     },
-    foodItems: [{ itemName: '', price: '', quantity: '', people: [] }],
+    items: [{ itemName: '', price: '', quantity: '', people: [] }],
   },
 };
 
@@ -44,7 +44,6 @@ export const splitSlice = createSlice({
   },
 });
 
-export const { updateSplitSummary, resetSplitSummary } =
-  splitSlice.actions;
+export const { updateSplitSummary, resetSplitSummary } = splitSlice.actions;
 
 export default splitSlice.reducer;

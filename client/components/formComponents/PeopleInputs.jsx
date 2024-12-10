@@ -5,10 +5,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from '@mui/material/IconButton';
 import Button from '@mui/material/Button';
 
-const AddPerson = (props) => {
-  const { peopleInputFields, handlePersonChange, removePerson, addPerson } =
-    props;
-
+const PeopleInputs = ({
+  people,
+  handlePersonChange,
+  removePerson,
+  addPerson,
+}) => {
   return (
     <>
       <label className="form-group">People</label>
@@ -22,7 +24,7 @@ const AddPerson = (props) => {
         display="flex"
         flexDirection="column"
       >
-        {peopleInputFields.map((person, index) => {
+        {people.map((person, index) => {
           return (
             <Box
               display="flex"
@@ -66,4 +68,4 @@ const AddPerson = (props) => {
   );
 };
 
-export default AddPerson;
+export default PeopleInputs;
