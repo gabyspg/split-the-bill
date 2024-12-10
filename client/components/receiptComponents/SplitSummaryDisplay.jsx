@@ -101,11 +101,6 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       />
     ));
 
-  const overallSummary = {
-    ...summary,
-    items: summary.items,
-  };
-
   return (
     <>
       <Snackbar
@@ -189,10 +184,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       </Box>
       <div className="divideReceipts">
         <div className="overallReceipt">
-          <PersonReceipt
-            person={summary.restaurant}
-            personSummary={overallSummary}
-          />
+          <PersonReceipt person={summary.restaurant} personSummary={summary} />
           {!isNewSplit && (
             <Button
               onClick={openConfirmDeleteAlert}
