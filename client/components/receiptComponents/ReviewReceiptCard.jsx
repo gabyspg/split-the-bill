@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 
-const ReceiptDisplay = (props) => {
+const ReviewReceiptCard = (props) => {
   const { receipt, reviewReceipt, id } = props;
   const { billName, date, restaurant } = receipt;
 
@@ -31,4 +31,4 @@ const ReceiptDisplay = (props) => {
   );
 };
 
-export default ReceiptDisplay;
+export default ReviewReceiptCard;

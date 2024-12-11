@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import PeopleInputs from './PeopleInputs.jsx';
-import ItemInputs from './ItemInputs.jsx';
-import InfoInput from './InfoInput.jsx';
-import TaxTipInput from './TaxTipInput.jsx';
+import PeopleInputs from '../formComponents/PeopleInputs.jsx';
+import ItemInputs from '../formComponents/ItemInputs.jsx';
+import InfoInput from '../formComponents/InfoInput.jsx';
+import TaxTipInput from '../formComponents/TaxTipInput.jsx';
 import { useNavigate } from 'react-router-dom';
 import { resetReceipt, updateReceipt } from '../../slices/receiptSlice.js';
 import { updateSplitHistory } from '../../slices/historySlice.js';

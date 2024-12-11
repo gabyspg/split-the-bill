@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import calculateSummary from '../../utils/calculateSummary.js';
+import calculateSplitSummary from '../../utils/calculateSplitSummary.js';
 import SplitSummaryDisplay from '../receiptComponents/SplitSummaryDisplay.jsx';
 
 const SplitSummary = () => {
@@ -12,7 +12,9 @@ const SplitSummary = () => {
   const id = !isNewSplit ? split.billSummary._id : null;
 
   const summary =
-    isNewSplit || isEdited ? calculateSummary(currentBill) : split.billSummary;
+    isNewSplit || isEdited
+      ? calculateSplitSummary(currentBill)
+      : split.billSummary;
 
   return (
     <SplitSummaryDisplay

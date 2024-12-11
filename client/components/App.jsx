@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from './NavBar.jsx';
-import EditReceiptInfo from './routeComponents/EditReceiptInfo.jsx';
+import SplitForm from './routeComponents/SplitForm.jsx';
 import SplitSummary from './routeComponents/SplitSummary.jsx';
 import PastSplits from './routeComponents/PastSplits.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -12,10 +12,10 @@ import 'react-toastify/dist/ReactToastify.css';
 const App = () => {
   const routes = [
     { path: '/', element: <Home /> },
-    { path: '/newReceipt', element: <EditReceiptInfo key="newReceipt" /> },
+    { path: '/newReceipt', element: <SplitForm key="newSplit" /> },
     {
       path: '/updateReceipt',
-      element: <EditReceiptInfo key="updateReceipt" />,
+      element: <SplitForm key="updateSplit" />,
     },
     { path: '/splitSummary', element: <SplitSummary /> },
     { path: '/pastSplits', element: <PastSplits /> },

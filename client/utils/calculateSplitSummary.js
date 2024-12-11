@@ -18,7 +18,7 @@ const calculateTotal = (a, b, c) => {
   return total;
 };
 
-const calculateSummary = (billObj) => {
+const calculateSplitSummary = (billObj) => {
   const { billInfo, people, items } = billObj;
   const subtotal = calculateSubtotal(items);
   const taxPercentage = calculatePercent(billInfo.tax, subtotal);
@@ -81,4 +81,4 @@ const calculateSummary = (billObj) => {
   return summary;
 };
 
-export default calculateSummary;
+export default calculateSplitSummary;

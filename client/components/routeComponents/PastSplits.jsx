@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import ReceiptDisplay from '../receiptComponents/ReceiptDisplay.jsx';
+import ReviewReceiptCard from '../receiptComponents/ReviewReceiptCard.jsx';
 import fetch from 'isomorphic-fetch';
 import { updateSplitSummary } from '../../slices/splitSlice.js';
 import { resetReceipt } from '../../slices/receiptSlice.js';
@@ -45,7 +45,7 @@ const PastSplits = () => {
   }, []);
 
   const renderReceipt = receipts.map((receipt, index) => (
-    <ReceiptDisplay
+    <ReviewReceiptCard
       reviewReceipt={reviewReceipt}
       receipt={receipt}
       id={index}

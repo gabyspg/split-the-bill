@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import PersonReceipt from '../receiptComponents/PersonReceipt.jsx';
+import IndividualReceipt from '../receiptComponents/IndividualReceipt.jsx';
 import convertSummaryToBill from '../../utils/convertFormat.js';
 import { updateReceipt, resetReceipt } from '../../slices/receiptSlice.js';
 import {
@@ -94,9 +94,9 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
 
   const renderPeopleReceipts = () =>
     Object.entries(summary.people).map(([person, personSummary], index) => (
-      <PersonReceipt
-        person={person}
-        personSummary={personSummary}
+      <IndividualReceipt
+        name={person}
+        summary={personSummary}
         key={`person-${index}`}
       />
     ));
@@ -184,7 +184,7 @@ const SplitSummaryDisplay = ({ isNewSplit, isEdited, summary, id }) => {
       </Box>
       <div className="divideReceipts">
         <div className="overallReceipt">
-          <PersonReceipt person={summary.restaurant} personSummary={summary} />
+          <IndividualReceipt name={summary.restaurant} summary={summary} />
           {!isNewSplit && (
             <Button
               onClick={openConfirmDeleteAlert}

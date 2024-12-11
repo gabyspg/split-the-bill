@@ -2,15 +2,15 @@ import React from 'react';
 import SummaryRow from './SummaryRow.jsx';
 import ItemRow from './ItemRow.jsx';
 
-const PersonReceipt = ({ person, personSummary }) => {
-  const { tip, tax, subtotal, total, items } = personSummary;
+const IndividualReceipt = ({ name, summary }) => {
+  const { tip, tax, subtotal, total, items } = summary;
 
-  const itemsList = items.map((item, i) => {
+  const itemsList = items.map(({ quantity, itemName, price }, i) => {
     return (
       <ItemRow
-        quantity={item.quantity}
-        name={item.itemName}
-        price={item.price}
+        quantity={quantity}
+        name={itemName}
+        price={price}
         key={`item ${i}`}
       />
     );
@@ -19,7 +19,7 @@ const PersonReceipt = ({ person, personSummary }) => {
   return (
     <div className="receipt">
       <div className="receipt-header">
-        <h3>Receipt: {person}</h3>
+        <h3>Receipt: {name}</h3>
       </div>
       {total ? (
         <>
@@ -49,4 +49,4 @@ const PersonReceipt = ({ person, personSummary }) => {
   );
 };
 
-export default PersonReceipt;
+export default IndividualReceipt;
